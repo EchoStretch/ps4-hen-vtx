@@ -1,0 +1,3 @@
+[submodule "ps4-payload-sdk"]
+	path = ps4-payload-sdk
+	url = https://github.com/EchoStretch/ps4-payload-sdk.git
