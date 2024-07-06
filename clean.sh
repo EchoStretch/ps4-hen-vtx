@@ -1,9 +1,5 @@
 #!/bin/bash
 
-pushd tool
-make clean
-popd
-
 pushd kpayload
 make clean
 popd

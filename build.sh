@@ -1,22 +1,33 @@
 #!/bin/bash
 
-set -e
+# Check if the firmware version is provided
+if [ -z "$1" ]; then
+  echo "Usage: $0 <FW>"
+  exit 1
+fi
 
-pushd tool
-make
-popd
+FW=$1
 
+# Build the kpayload component
 pushd kpayload
-make
+make clean
+make FW=$FW
 popd
 
+# Build the installer component
 pushd installer
-make
+make clean
+make FW=$FW
 popd
 
-rm -f ps4-hen-vtx.bin
-cp installer/installer.bin ps4-hen-vtx.bin
+# Copy the built binaries to the appropriate filenames
+cp installer/installer.bin ps4-hen-$FW-PPPwn-vtx.bin
 
-tool/bin2js ps4-hen-vtx.bin > payload.js
+pushd PPPwn
+make -C stage2 FW=$FW clean
+make -C stage2 FW=$FW USB_LOADER=1
+popd
 
-sed "s/###/$(cat payload.js)/" exploit.template > exploit/index.html
+# Add period before the last two digits
+FW_WITH_PERIOD="${FW:0:${#FW}-2}.${FW:${#FW}-2}"
+cp PPPwn/stage2/stage2.bin "stage2_$FW_WITH_PERIOD.bin"

@@ -16,6 +16,7 @@ extern void* (*malloc)(unsigned long size, void* type, int flags) PAYLOAD_BSS;
 extern void (*free)(void* addr, void* type) PAYLOAD_BSS;
 extern char * (*strstr) (const char *haystack, const char *needle) PAYLOAD_BSS;
 extern void* (*memcpy)(void* dst, const void* src, size_t len) PAYLOAD_BSS;
+extern int (*printf)(const char *fmt, ...) PAYLOAD_BSS;
 extern size_t (*strlen)(const char *str) PAYLOAD_BSS;
 
 extern void* M_TEMP PAYLOAD_BSS;

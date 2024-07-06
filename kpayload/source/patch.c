@@ -216,6 +216,28 @@ PAYLOAD_CODE int shellcore_fpkg_patch(void)
 	if (ret)
 		goto error;
 
+        #if FW < 950
+	// check_disc_root_param_patch
+	ret = proc_write_mem(ssc, (void *)(text_seg_base + check_disc_root_param_patch), 2, "\x90\xE9", &n);
+	if (ret)
+		goto error;
+        #endif
+
+        // app_installer_patch
+        ret = proc_write_mem(ssc, (void *)(text_seg_base + app_installer_patch), 1, "\xEB", &n); 
+        if (ret)
+	        goto error;
+
+        // check_system_version
+        ret = proc_write_mem(ssc, (void *)(text_seg_base + check_system_version), 1, "\xEB", &n);
+        if (ret)
+	        goto error;
+
+        // check_title_system_update_patch
+        ret = proc_write_mem(ssc, (void *)(text_seg_base + check_title_system_update_patch), 4, "\x48\x31\xC0\xC3", &n);
+        if (ret)
+	        goto error;
+
 	// this offset corresponds to "fake\0" string in the Shellcore's memory
 	ret = proc_write_mem(ssc, (void *)(text_seg_base + fake_free_patch), 5, "free\0", &n);
 	if (ret)
@@ -234,16 +256,18 @@ PAYLOAD_CODE int shellcore_fpkg_patch(void)
 	// enable debug trophies on retail
 	ret = proc_write_mem(ssc, (void *)(text_seg_base + debug_trophies_patch), 5, "\x31\xc0\x90\x90\x90", &n);
 	if (ret)
-	{
 		goto error;
-	}
 
-    // never disable screenshot - credits to Biorn1950
-    ret = proc_write_mem(ssc, (void *)(text_seg_base + disable_screenshot_patch), 5, "\x90\x90\x90\x90\x90", &n);
-    if (ret) {
-        goto error;
-    }
+        // never disable screenshot - credits to Biorn1950
+        ret = proc_write_mem(ssc, (void *)(text_seg_base + disable_screenshot_patch), 5, "\x90\x90\x90\x90\x90", &n);
+        if (ret) {
+                goto error;
 
+       // enable ps vr without spoofer
+       ret = proc_write_mem(ssc, (void *)(text_seg_base + enable_psvr_patch), 3, "\x31\xC0\xC3", &n);
+       if (ret)
+               goto error;
+}
 error:
 	if (entries)
 		dealloc(entries);

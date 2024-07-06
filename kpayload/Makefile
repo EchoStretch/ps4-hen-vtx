@@ -11,6 +11,10 @@ OBJS	:= $(patsubst $(SDIR)/%.c, $(ODIR)/%.o, $(CFILES))
 
 TARGET = $(shell basename $(CURDIR)).bin
 
+# Default value for FW if not set
+FW ?= 0
+CFLAGS += -DFW=$(FW)
+
 $(TARGET): $(ODIR) $(OBJS)
 	$(CC) $(ODIR)/*.o -o temp.t $(CFLAGS) $(LFLAGS)
 	$(OBJCOPY) -R .payload_bss temp.t temp.u

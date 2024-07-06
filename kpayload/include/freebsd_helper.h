@@ -150,7 +150,10 @@ TYPE_BEGIN(struct proc, 0x800); // XXX: random, don't use directly without fixin
 	TYPE_FIELD(struct filedesc *p_fd, 0x48);
 	TYPE_FIELD(int pid, 0xB0);
 	TYPE_FIELD(struct vmspace *p_vmspace, 0x168);
-	TYPE_FIELD(char p_comm[32], 0x44C); // 5.05
+	//TYPE_FIELD(char p_comm[32], 0x44C); // 5.0x
+	//TYPE_FIELD(char p_comm[32], 0x450); // 6.00-6.20
+	TYPE_FIELD(char p_comm[32], 0x454); // 5.5x, 6.5x, and 6.72
+
 TYPE_END();
 
 #endif

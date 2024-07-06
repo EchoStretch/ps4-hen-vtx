@@ -1,4 +1,4 @@
-LIBPS4	:= $(PS4SDK)/libPS4
+LIBPS4	:=	../ps4-payload-sdk/libPS4
 
 CC	:= gcc
 OBJCOPY	:= objcopy
@@ -13,6 +13,10 @@ SFILES	:= $(wildcard $(SDIR)/*.s)
 OBJS	:= $(patsubst $(SDIR)/%.c, $(ODIR)/%.o, $(CFILES)) $(patsubst $(SDIR)/%.s, $(ODIR)/%.o, $(SFILES))
 
 TARGET = $(shell basename $(CURDIR)).bin
+
+# Default value for FW if not set
+FW ?= 0
+CFLAGS += -DFW=$(FW)
 
 $(TARGET): $(ODIR) $(OBJS)
 	$(CC) $(LIBPS4)/crt0.s $(LIBPS4)/source/syscall.s $(ODIR)/*.o -o temp.t $(CFLAGS) $(LFLAGS)

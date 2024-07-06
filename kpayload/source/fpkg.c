@@ -17,6 +17,7 @@ extern int (*fpu_kern_enter)(struct thread *td, struct fpu_kern_ctx *ctx, uint32
 extern int (*fpu_kern_leave)(struct thread *td, struct fpu_kern_ctx *ctx) PAYLOAD_BSS;
 extern void* (*memcpy)(void* dst, const void* src, size_t len) PAYLOAD_BSS;
 extern void* (*memset)(void *s, int c, size_t n) PAYLOAD_BSS;
+extern int (*printf)(const char *fmt, ...) PAYLOAD_BSS;
 
 extern struct sbl_map_list_entry** SBL_DRIVER_MAPPED_PAGES PAYLOAD_BSS;
 extern struct sx* SBL_PFS_SX PAYLOAD_BSS;

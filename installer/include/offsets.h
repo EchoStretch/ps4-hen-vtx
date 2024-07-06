@@ -1,42 +1,43 @@
-#ifndef __OFFSETS_H__
-#define __OFFSETS_H__
 #pragma once
 
-// 5.05
-#define	XFAST_SYSCALL_addr              0x00001C0
+#ifndef FW
+#error FW not set
+#endif
 
-// Names - Data
-#define PRISON0_addr                    0x10986A0
-#define ROOTVNODE_addr                  0x22C1A70
-#define PMAP_STORE_addr                 0x22CB570
-#define DT_HASH_SEGMENT_addr            0x0B5EF30
-
-// Functions
-#define pmap_protect_addr               0x02E3090
-#define pmap_protect_p_addr             0x02E30D4
-
-// Patches
-// debug menu error
-#define debug_menu_error_patch1         0x04F9048
-#define debug_menu_error_patch2         0x04FA15C
-
-// disable signature check
-#define disable_signature_check_patch   0x06A2700
-
-// enable debug RIFs
-#define enable_debug_rifs_patch1        0x064B2B0
-#define enable_debug_rifs_patch2        0x064B2D0
-
-// allow sys_dynlib_dlsym in all processes
-#define sys_dynlib_dlsym_patch          0x0237F3A
-
-// sdk version spoof - enable all VR fws
-#define sdk_version_patch               0x14A63F0
-
-// enable debug log
-#define enable_debug_log_patch          0x043612A
-
-// enable uart output
-#define enable_uart_patch               0x19ECEB0
-
+#if FW==755
+#include "offsets/755.h"
+#elif FW==800
+#include "offsets/800-801.h"
+#elif FW==801
+#include "offsets/800-801.h"
+#elif FW==803
+#include "offsets/803.h"
+#elif FW==850
+#include "offsets/850.h"
+#elif FW==852
+#include "offsets/852.h"
+#elif FW==900
+#include "offsets/900.h"
+#elif FW==903
+#include "offsets/903.h"
+#elif FW==904
+#include "offsets/904.h"
+#elif FW==950
+#include "offsets/950.h"
+#elif FW==951
+#include "offsets/951.h"
+#elif FW==960
+#include "offsets/960.h"
+#elif FW==1000
+#include "offsets/1000.h"
+#elif FW==1001
+#include "offsets/1001.h"
+#elif FW==1050
+#include "offsets/1050.h"
+#elif FW==1070
+#include "offsets/1070-1071.h"
+#elif FW==1071
+#include "offsets/1070-1071.h"
+#elif FW==1100
+#include "offsets/1100.h"
 #endif
