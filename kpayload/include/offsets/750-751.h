@@ -1,9 +1,8 @@
 #ifndef __OFFSETS_H__
 #define __OFFSETS_H__
 #pragma once
-// 7.55
 
-// data
+// data 7.50-7.51
 #define	XFAST_SYSCALL_addr              0x000001C0
 #define M_TEMP_addr                     0x01556DA0
 #define MINI_SYSCORE_SELF_BINARY_addr   0x015A8FC8
@@ -77,6 +76,12 @@
 #define mountpfs__sceSblPfsSetKeys_hook1                            0x006D9757
 #define mountpfs__sceSblPfsSetKeys_hook2                            0x006D9988
 
+// SceShellCore patches - bypass firmware checks
+#define check_disc_root_param_patch     0x00132F9D
+#define app_installer_patch             0x00133080
+#define check_system_version            0x003B0B47
+#define check_title_system_update_patch 0x003B3200
+
 //libkernel_sys.sprx patches - debug patches
 #define sceSblRcMgrIsAllowDebugMenuForSettings_patch                0x0001D140
 #define sceSblRcMgrIsStoreMode_patch                                0x0001D4A0
@@ -124,9 +129,9 @@
 #define ext_hdd_patch                   0x005BCF2D
 
 // SceShellCore patches - enable debug trophies
-#define debug_trophies_patch            0x006E3C16
+#define debug_trophies_patch            0x0071759B
 
 // SceShellCore patches - disable screenshot block
-#define disable_screenshot_patch        0x0037E6CF
+#define disable_screenshot_patch        0x0038C8B6
 
 #endif

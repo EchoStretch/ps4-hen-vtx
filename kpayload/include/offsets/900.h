@@ -16,6 +16,7 @@
 #define SBL_KEYMGR_BUF_GVA_addr          0x0264C808
 #define FPU_CTX_addr                     0x026541C0
 #define DIPSW_addr                       0x02216850
+#define SYSENT_addr                      0x01100310
 
 // common
 #define memcmp_addr                      0x00271E20

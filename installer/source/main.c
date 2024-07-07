@@ -86,6 +86,9 @@ int install_payload(struct thread *td, struct install_payload_args* args)
 	kmem[2] = 0x00;
 	kmem[3] = 0x00;
 
+        // patch vm_map_protect check
+	memcpy((void *)(kernel_base + vm_map_protect_check), "\x90\x90\x90\x90\x90\x90", 6);
+
 	// install kpayload
 	memset(payload_buffer, 0, PAGE_SIZE);
 	memcpy(payload_buffer, payload_data, payload_size);

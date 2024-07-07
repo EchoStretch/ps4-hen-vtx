@@ -2,7 +2,7 @@
 #define __OFFSETS_H__
 #pragma once
 
-// 7.55
+// 7.50-7.51
 #define	XFAST_SYSCALL_addr              0x000001C0
 
 // Names - Data

@@ -31,6 +31,9 @@
 #define sys_dynlib_dlsym_patch1         0x00017C2F
 #define sys_dynlib_dlsym_patch2         0x003AD040
 
+// disable some check for mmap
+#define vm_map_protect_check            0x0014D6DB
+
 // enable debug log
 #define enable_debug_log_patch          0x0015D657
 

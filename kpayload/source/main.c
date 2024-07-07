@@ -37,6 +37,7 @@ struct sbl_key_rbtree_entry** SBL_KEYMGR_KEY_RBTREE PAYLOAD_BSS;
 uint8_t* SBL_KEYMGR_BUF_VA PAYLOAD_BSS;
 uint64_t* SBL_KEYMGR_BUF_GVA PAYLOAD_BSS;
 void* FPU_CTX PAYLOAD_BSS;
+struct sysent *SYSENT PAYLOAD_BSS;
 
 // Fself
 int (*sceSblACMgrGetPathId) (const char* path) PAYLOAD_BSS;
@@ -82,6 +83,7 @@ extern void install_fself_hooks(void)         PAYLOAD_CODE;
 extern void install_fpkg_hooks(void)          PAYLOAD_CODE;
 extern void install_patches(void)             PAYLOAD_CODE;
 extern void install_fake_signout_patch(void)  PAYLOAD_CODE;
+extern void install_syscall_hooks(void)       PAYLOAD_CODE;
 extern int shellcore_fpkg_patch(void)         PAYLOAD_CODE;
 
 #define resolve(name) name = (void *)(kernbase + name##_addr)
@@ -100,6 +102,7 @@ PAYLOAD_CODE void resolve_kdlsym()
 	resolve(SBL_KEYMGR_BUF_VA);
 	resolve(SBL_KEYMGR_BUF_GVA);
 	resolve(FPU_CTX);
+        resolve(SYSENT);
 
 	// common
 	resolve(memcmp);
@@ -151,6 +154,7 @@ PAYLOAD_CODE int my_entrypoint()
 	install_fself_hooks();
 	install_fpkg_hooks();
 	install_patches();
+        install_syscall_hooks();
 	return shellcore_fpkg_patch();
 }
 

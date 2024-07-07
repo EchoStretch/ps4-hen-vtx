@@ -31,6 +31,9 @@
 #define enable_debug_rifs_patch1        0x00643EA0
 #define enable_debug_rifs_patch2        0x00643ED0
 
+// disable some check for mmap
+#define vm_map_protect_check            0x00196D3B
+
 // enable debug log
 #define enable_debug_log_patch          0x00205557
 
