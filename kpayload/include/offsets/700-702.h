@@ -7,15 +7,15 @@
 #define M_TEMP_addr                     0x01A7AE50
 #define MINI_SYSCORE_SELF_BINARY_addr   0x01555BD8
 #define ALLPROC_addr                    0x01B48318
-#define SBL_DRIVER_MAPPED_PAGES_addr    0x026945C0
+#define SBL_DRIVER_MAPPED_PAGES_addr    0x02669E48
 #define SBL_PFS_SX_addr                 0x026945C0
 #define SBL_KEYMGR_KEY_SLOTS_addr       0x02698848
 #define SBL_KEYMGR_KEY_RBTREE_addr      0x02698858
 #define SBL_KEYMGR_BUF_VA_addr          0x0269C000
 #define SBL_KEYMGR_BUF_GVA_addr         0x0269C808
 #define FPU_CTX_addr                    0x0267B640
-#define DIPSW_addr                      0x0023A6FC
-#define SYSENT_addr                     0x01122340
+#define DIPSW_addr                      0x022FED50
+#define SYSENT_addr                     0x01125660
 
 // common
 #define memcmp_addr                     0x00207500
