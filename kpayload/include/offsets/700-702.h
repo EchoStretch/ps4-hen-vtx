@@ -13,7 +13,7 @@
 #define SBL_KEYMGR_KEY_RBTREE_addr      0x02698858
 #define SBL_KEYMGR_BUF_VA_addr          0x0269C000
 #define SBL_KEYMGR_BUF_GVA_addr         0x0269C808
-#define FPU_CTX_addr                    0x0267B640
+#define FPU_CTX_addr                    0x02688400
 #define DIPSW_addr                      0x022FED50
 #define SYSENT_addr                     0x01125660
 
