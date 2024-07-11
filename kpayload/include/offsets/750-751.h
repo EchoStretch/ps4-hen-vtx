@@ -76,12 +76,6 @@
 #define mountpfs__sceSblPfsSetKeys_hook1                            0x006D9757
 #define mountpfs__sceSblPfsSetKeys_hook2                            0x006D9988
 
-// SceShellCore patches - bypass firmware checks
-#define check_disc_root_param_patch     0x00132F9D
-#define app_installer_patch             0x00133080
-#define check_system_version            0x003B0B47
-#define check_title_system_update_patch 0x003B3200
-
 //libkernel_sys.sprx patches - debug patches
 #define sceSblRcMgrIsAllowDebugMenuForSettings_patch                0x0001D140
 #define sceSblRcMgrIsStoreMode_patch                                0x0001D4A0
@@ -129,9 +123,9 @@
 #define ext_hdd_patch                   0x005BCF2D
 
 // SceShellCore patches - enable debug trophies
-#define debug_trophies_patch            0x0071759B
+#define debug_trophies_patch            0x006E3C19
 
 // SceShellCore patches - disable screenshot block
-#define disable_screenshot_patch        0x0038C8B6
+#define disable_screenshot_patch        0x000CD6B6
 
 #endif

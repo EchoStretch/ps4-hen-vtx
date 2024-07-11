@@ -251,7 +251,7 @@ PAYLOAD_CODE void install_syscall_hooks()
 	writeCr0(cr0 & ~X86_CR0_WP);
 	flags = intr_disable();
 
-    // proc
+        // proc
 	install_syscall(107, sys_proc_list);
 	install_syscall(108, sys_proc_rw);
 	install_syscall(109, sys_proc_cmd);

@@ -37,6 +37,6 @@
 #define enable_debug_log_patch          0x000B7B17
 
 // enable uart output
-#define enable_uart_patch               0x0152BF5D
+#define enable_uart_patch               0x0152BF60
 
 #endif

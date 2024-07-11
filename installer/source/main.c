@@ -1,7 +1,6 @@
-#include <ps4.h>
+#include "ps4.h"
 
 #include "defines.h"
-#include "ddebug.h"
 #include "offsets.h"
 
 #define PS4_UPDATE_FULL_PATH "/update/PS4UPDATE.PUP"
@@ -117,19 +116,19 @@ static inline void patch_update(void)
 	mkdir(PS4_UPDATE_TEMP_PATH, 0777);
 }
 
-int _main(struct thread *td) 
-{
+int _main(struct thread *td)
+ {
 	int result;
 
 	initKernel();
 	initLibc();
 
 #ifdef DEBUG_SOCKET
-	initNetwork();
-	initDebugSocket();
+  initNetwork();
+  DEBUG_SOCK = SckConnect(DEBUG_IP, DEBUG_PORT);
 #endif
 	
-        printfsocket("Starting...\n");
+        printf_debug("Starting...\n");
 
 	struct payload_info payload_info;
 	payload_info.buffer = (uint8_t *)kpayload;
@@ -139,17 +138,21 @@ int _main(struct thread *td)
 
 	result = kexec(&install_payload, &payload_info);
 	result = !result ? 0 : errno;
-	printfsocket("install_payload: %d\n", result);
+	printf_debug("install_payload: %d\n", result);
 
 	patch_update();
 
 	initSysUtil();
-	notify("Welcome to PS4HEN v"VERSION);
 
-	printfsocket("Done.\n");
+        char fw_version[6] = {0};
+        get_firmware_string(fw_version);
+	printf_notification("Welcome to PS4HEN v"VERSION"\nPS4 Firmware %s", fw_version);
+
+	printf_debug("Done.\n");
 
 #ifdef DEBUG_SOCKET
-	closeDebugSocket();
+  printf_debug("Closing socket...\n");
+  SckClose(DEBUG_SOCK);
 #endif
 
 	return result;

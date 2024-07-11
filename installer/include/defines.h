@@ -5,9 +5,8 @@
 #define VERSION "2.1.5"
 
 //#define DEBUG_SOCKET
-
-#define LOG_IP   "192.168.1.3\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
-#define LOG_PORT 9023
+#define DEBUG_IP "192.168.2.2"
+#define DEBUG_PORT 9023
 
 struct payload_info {
 	uint8_t* buffer;

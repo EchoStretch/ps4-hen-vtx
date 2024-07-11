@@ -76,12 +76,6 @@
 #define mountpfs__sceSblPfsSetKeys_hook1                            0x006B534B
 #define mountpfs__sceSblPfsSetKeys_hook2                            0x006B557C
 
-// SceShellCore patches - bypass firmware checks
-#define check_disc_root_param_patch     0x0013CE3D
-#define app_installer_patch             0x0013CF20
-#define check_system_version            0x003B3B38
-#define check_title_system_update_patch 0x003B6270
-
 // libkernel_sys.sprx patches - debug patches
 #define sceSblRcMgrIsAllowDebugMenuForSettings_patch                0x0001D240
 #define sceSblRcMgrIsStoreMode_patch                                0x0001D5A0
@@ -102,15 +96,21 @@
 
 // SceShellCore patches - call nidf_libSceDipsw
 #define nidf_libSceDipsw_patch1                                     0x0017428A
-#define nidf_libSceDipsw_patch2                                     0x0023A6FC
+#define nidf_libSceDipsw_patch2                                     0x00318FF1
 #define nidf_libSceDipsw_patch3                                     0x007F5D2A
 #define nidf_libSceDipsw_patch4                                     0x009CE12A
+
+// SceShellCore patches - bypass firmware checks
+#define check_disc_root_param_patch                                 0x0013CE3D
+#define app_installer_patch                                         0x0013CF20
+#define check_system_version                                        0x003B3B38
+#define check_title_system_update_patch                             0x003B6270
 
 // SceShellCore patches - enable remote pkg installer
 #define enable_data_mount_patch                                     0x00318FE1
 
 // SceShellCore patches - enable VR without spoof
-#define enable_psvr_patch                                           0x00D629A0
+#define enable_psvr_patch                                           0x00D07C5F
 
 // SceShellCore patches - enable fpkg
 #define enable_fpkg_patch                                           0x003C5900
@@ -123,9 +123,9 @@
 #define ext_hdd_patch                                               0x005C6AAD
 
 // SceShellCore patches - enable debug trophies
-#define debug_trophies_patch                                        0x006E44D6
+#define debug_trophies_patch                                        0x006E44D9
 
 // SceShellCore patches - disable screenshot block
-#define disable_screenshot_patch                                    0x003826D2
+#define disable_screenshot_patch                                    0x000D61F6
 
 #endif
