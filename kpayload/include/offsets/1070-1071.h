@@ -61,8 +61,6 @@
 #define vm_map_lookup_entry_addr        0x00476910
 #define proc_rwmem_addr                 0x004244A0
 
-#define printf_hook                     0x01A7AE88
-
 // Fself hooks
 #define sceSblAuthMgrIsLoadable__sceSblACMgrGetPathId_hook          0x0064117C
 #define sceSblAuthMgrIsLoadable2_hook                               0x006412CE

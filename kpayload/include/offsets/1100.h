@@ -1,5 +1,6 @@
-#ifndef OFFSET1100_H
-#define OFFSET1100_H
+#ifndef __OFFSETS_H__
+#define __OFFSETS_H__
+#pragma once
 
 // 11.00
 // data

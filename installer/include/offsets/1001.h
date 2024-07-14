@@ -10,13 +10,10 @@
 #define ROOTVNODE_addr                  0x01B25BD0
 #define PMAP_STORE_addr                 0x02182D60
 #define DT_HASH_SEGMENT_addr            0x00CE6DC8
-#define M_TEMP_addr                     0x00109C20
 
 // Functions
 #define pmap_protect_addr               0x000E2420
 #define pmap_protect_p_addr             0x000E2467
-#define malloc_addr                     0x00109A60
-#define printf_addr                     0x000C50F0
 
 // Patches
 // debug menu error

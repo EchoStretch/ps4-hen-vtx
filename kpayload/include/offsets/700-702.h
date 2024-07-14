@@ -2,6 +2,7 @@
 #define __OFFSETS_H__
 #pragma once
 
+// 7.00 - 7.02
 // data 700-702
 #define XFAST_SYSCALL_addr              0x000001C0
 #define M_TEMP_addr                     0x01A7AE50

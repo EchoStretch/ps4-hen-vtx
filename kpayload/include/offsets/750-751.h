@@ -2,7 +2,8 @@
 #define __OFFSETS_H__
 #pragma once
 
-// data 7.50-7.51
+// 7.50 - 7.51
+// data
 #define	XFAST_SYSCALL_addr              0x000001C0
 #define M_TEMP_addr                     0x01556DA0
 #define MINI_SYSCORE_SELF_BINARY_addr   0x015A8FC8

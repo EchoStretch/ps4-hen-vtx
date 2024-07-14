@@ -25,7 +25,7 @@ void* (*memcpy)(void* dst, const void* src, size_t len) PAYLOAD_BSS;
 void* (*memset)(void *s, int c, size_t n) PAYLOAD_BSS;
 size_t (*strlen)(const char *str) PAYLOAD_BSS;
 int (*printf)(const char *fmt, ...) PAYLOAD_BSS;
-void (*eventhandler_register)(void *list, const char *name, void *func, void *key, void *arg, int priority) PAYLOAD_BSS; // 5.5x-6.72
+void (*eventhandler_register)(void *list, const char *name, void *func, void *arg, int priority) PAYLOAD_BSS;
 
 void* M_TEMP PAYLOAD_BSS;
 uint8_t* MINI_SYSCORE_SELF_BINARY PAYLOAD_BSS;
@@ -84,9 +84,11 @@ extern void install_fpkg_hooks(void)          PAYLOAD_CODE;
 extern void install_patches(void)             PAYLOAD_CODE;
 extern void install_fake_signout_patch(void)  PAYLOAD_CODE;
 extern void install_syscall_hooks(void)       PAYLOAD_CODE;
-extern int shellcore_fpkg_patch(void)         PAYLOAD_CODE;
+extern void shellcore_patch(void)             PAYLOAD_CODE;
+ 
 
 #define resolve(name) name = (void *)(kernbase + name##_addr)
+
 PAYLOAD_CODE void resolve_kdlsym()
 {
 	uint64_t kernbase = getkernbase();
@@ -102,7 +104,7 @@ PAYLOAD_CODE void resolve_kdlsym()
 	resolve(SBL_KEYMGR_BUF_VA);
 	resolve(SBL_KEYMGR_BUF_GVA);
 	resolve(FPU_CTX);
-        resolve(SYSENT);
+    resolve(SYSENT);
 
 	// common
 	resolve(memcmp);
@@ -148,14 +150,14 @@ PAYLOAD_CODE void resolve_kdlsym()
 	resolve(vm_map_lookup_entry);
 }
 
-PAYLOAD_CODE int my_entrypoint()
+PAYLOAD_CODE void my_entrypoint()
 {
 	resolve_kdlsym();
 	install_fself_hooks();
 	install_fpkg_hooks();
 	install_patches();
-        install_syscall_hooks();
-	return shellcore_fpkg_patch();
+	install_syscall_hooks();
+	shellcore_patch();
 }
 
 struct {

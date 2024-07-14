@@ -11,7 +11,7 @@ extern unsigned kpayload_size;
 
 int install_payload(struct thread *td, struct install_payload_args* args)
 {
-
+        UNUSED(td);
 	uint8_t* kernel_base = (uint8_t*)(__readmsr(0xC0000082) - XFAST_SYSCALL_addr);
 
 	void (*pmap_protect)(void * pmap, uint64_t sva, uint64_t eva, uint8_t pr) = (void *)(kernel_base + pmap_protect_addr);
@@ -118,6 +118,7 @@ static inline void patch_update(void)
 
 int _main(struct thread *td)
  {
+        UNUSED(td);
 	int result;
 
 	initKernel();
@@ -141,12 +142,11 @@ int _main(struct thread *td)
 	printf_debug("install_payload: %d\n", result);
 
 	patch_update();
-
 	initSysUtil();
 
         char fw_version[6] = {0};
         get_firmware_string(fw_version);
-	printf_notification("Welcome to PS4HEN v"VERSION"\nPS4 Firmware %s", fw_version);
+	printf_notification("Welcome To OG HEN v"VERSION"\nPS4 Firmware %s", fw_version);
 
 	printf_debug("Done.\n");
 

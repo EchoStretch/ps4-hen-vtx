@@ -2,7 +2,7 @@
 #define __OFFSETS_H__
 #pragma once
 
-//10.50
+// 10.50
 // data
 #define	XFAST_SYSCALL_addr              0x000001C0
 #define M_TEMP_addr                     0x01A5FE30
@@ -60,8 +60,6 @@
 #define vm_map_unlock_read_addr         0x00476320
 #define vm_map_lookup_entry_addr        0x00476910
 #define proc_rwmem_addr                 0x004244A0
-
-#define printf_hook                     0x01A7AE88
 
 // Fself hooks
 #define sceSblAuthMgrIsLoadable__sceSblACMgrGetPathId_hook          0x0064117C

@@ -1,8 +1,8 @@
 #ifndef __OFFSETS_H__
 #define __OFFSETS_H__
 #pragma once
-// 7.55
 
+// 7.55
 // data
 #define	XFAST_SYSCALL_addr              0x000001C0
 #define M_TEMP_addr                     0x01556DA0

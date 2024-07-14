@@ -151,7 +151,7 @@ PAYLOAD_CODE static inline int proc_write_mem(struct proc *p, void *ptr, size_t 
 	return proc_rw_mem(p, ptr, size, data, n, 1);
 }
 
-PAYLOAD_CODE int shellcore_fpkg_patch(void)
+PAYLOAD_CODE int shellcore_patch(void)
 {
 	uint8_t *text_seg_base = NULL;
 	size_t n;
@@ -175,7 +175,7 @@ PAYLOAD_CODE int shellcore_fpkg_patch(void)
 	};
 
 	uint8_t xor__eax_eax__inc__eax[5] = { 0x31, 0xC0, 0xFF, 0xC0, 0x90 };
-
+	
 	struct proc *ssc = proc_find_by_name("SceShellCore");
 
 	if (!ssc) {
@@ -203,71 +203,84 @@ PAYLOAD_CODE int shellcore_fpkg_patch(void)
 	// enable installing of debug packages
 	for (int i = 0; i < COUNT_OF(call_ofs_for__xor__eax_eax__3nop); i++) {
 		ret = proc_write_mem(ssc, (void *)(text_seg_base + call_ofs_for__xor__eax_eax__3nop[i]), 5, "\x31\xC0\x90\x90\x90", &n);
-		if (ret)
+		if (ret) {
 			goto error;
+		}
 	}
 
 	ret = proc_write_mem(ssc, text_seg_base + enable_data_mount_patch, sizeof(xor__eax_eax__inc__eax), xor__eax_eax__inc__eax, &n);
-	if (ret) 
-		goto error;
+    if (ret) {
+       goto error;
+    }
 
 	// enable fpkg for patches
 	ret = proc_write_mem(ssc, (void *)(text_seg_base + enable_fpkg_patch), 8, "\xE9\x96\x00\x00\x00\x90\x90\x90", &n);
-	if (ret)
-		goto error;
+    if (ret) {
+       goto error;
+    }
 
-        #if FW < 950
+	#if FW < 950
 	// check_disc_root_param_patch
 	ret = proc_write_mem(ssc, (void *)(text_seg_base + check_disc_root_param_patch), 2, "\x90\xE9", &n);
-	if (ret)
-		goto error;
-        #endif
+    if (ret) {
+       goto error;
+    }
+	#endif
 
-        // app_installer_patch
-        ret = proc_write_mem(ssc, (void *)(text_seg_base + app_installer_patch), 1, "\xEB", &n); 
-        if (ret)
-	        goto error;
+	// app_installer_patch
+	ret = proc_write_mem(ssc, (void *)(text_seg_base + app_installer_patch), 1, "\xEB", &n); 
+    if (ret) {
+       goto error;
+    }
 
-        // check_system_version
-        ret = proc_write_mem(ssc, (void *)(text_seg_base + check_system_version), 1, "\xEB", &n);
-        if (ret)
-	        goto error;
+	// check_system_version
+	ret = proc_write_mem(ssc, (void *)(text_seg_base + check_system_version), 1, "\xEB", &n);
+    if (ret) {
+       goto error;
+    }
 
-        // check_title_system_update_patch
-        ret = proc_write_mem(ssc, (void *)(text_seg_base + check_title_system_update_patch), 4, "\x48\x31\xC0\xC3", &n);
-        if (ret)
-	        goto error;
+	// check_title_system_update_patch
+	ret = proc_write_mem(ssc, (void *)(text_seg_base + check_title_system_update_patch), 4, "\x48\x31\xC0\xC3", &n);
+    if (ret) {
+       goto error;
+    }
 
 	// this offset corresponds to "fake\0" string in the Shellcore's memory
 	ret = proc_write_mem(ssc, (void *)(text_seg_base + fake_free_patch), 5, "free\0", &n);
-	if (ret)
-		goto error;
+    if (ret) {
+       goto error;
+    }
 
 	// make pkgs installer working with external hdd
 	ret = proc_write_mem(ssc, (void *)(text_seg_base + pkg_installer_patch), 1, "\0", &n);
-	if (ret)
-		goto error;
+    if (ret) {
+       goto error;
+    }
 
 	// enable support with 6.xx external hdd
 	ret = proc_write_mem(ssc, (void *)(text_seg_base + ext_hdd_patch), 1, "\xEB", &n);
-	if (ret)
-		goto error;
+    if (ret) {
+       goto error;
+    }
 
 	// enable debug trophies on retail
 	ret = proc_write_mem(ssc, (void *)(text_seg_base + debug_trophies_patch), 5, "\x31\xc0\x90\x90\x90", &n);
-	if (ret)
-		goto error;
+    if (ret) {
+       goto error;
+    }
 
-        // never disable screenshot - credits to Biorn1950
-        ret = proc_write_mem(ssc, (void *)(text_seg_base + disable_screenshot_patch), 5, "\x90\x90\x90\x90\x90", &n);
-        if (ret) {
-                goto error;
+	// never disable screenshot - credits to Biorn1950
+	ret = proc_write_mem(ssc, (void *)(text_seg_base + disable_screenshot_patch), 5, "\x90\x90\x90\x90\x90", &n);
+    if (ret) {
+       goto error;
+    }
 
-       // enable ps vr without spoofer
-       ret = proc_write_mem(ssc, (void *)(text_seg_base + enable_psvr_patch), 3, "\x31\xC0\xC3", &n);
-       if (ret)
-               goto error;
-}
+	// enable ps vr without spoofer
+	ret = proc_write_mem(ssc, (void *)(text_seg_base + enable_psvr_patch), 3, "\x31\xC0\xC3", &n);
+    if (ret) {
+       goto error;
+    }
+
 error:
 	if (entries)
 		dealloc(entries);
@@ -302,9 +315,10 @@ PAYLOAD_CODE int shellui_patch(void)
 		goto error;
 	}
 
-	ret = proc_get_vm_map(ssui, &entries, &num_entries);
-	if (ret)
-		goto error;
+    ret = proc_get_vm_map(ssui, &entries, &num_entries);
+    if (ret) {
+       goto error;
+    }
 
 	for (int i = 0; i < num_entries; i++) {
         if (!memcmp(entries[i].name, "executable", 10) && (entries[i].prot >= (PROT_READ | PROT_EXEC))) {
@@ -321,7 +335,7 @@ PAYLOAD_CODE int shellui_patch(void)
     // disable CreateUserForIDU
     ret = proc_write_mem(ssui, (void *)(executable_base  + CreateUserForIDU_patch), 4, "\x48\x31\xC0\xC3", &n);
     if (ret) {
-        goto error;
+       goto error;
     }
 
     for (int i = 0; i < num_entries; i++) {
@@ -335,10 +349,16 @@ PAYLOAD_CODE int shellui_patch(void)
         ret = 1;
         goto error;
     }
-
+	
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////
+	// Seems to Be Crashing PS4 when going into menu, Disabled For Now
     // enable remote play menu - credits to Aida
-    ret = proc_write_mem(ssui, (void *)(app_base  + remote_play_menu_patch), 5, "\xE9\x82\x02\x00\x00", &n);
-
+    //ret = proc_write_mem(ssui, (void *)(app_base  + remote_play_menu_patch), 5, "\xE9\x82\x02\x00\x00", &n);
+    //if (ret) {
+    //   goto error;
+    //}
+    //////////////////////////////////////////////////////////////////////////////////////////////////////
+	
     for (int i = 0; i < num_entries; i++) {
         if (!memcmp(entries[i].name, "libkernel_sys.sprx", 18) && (entries[i].prot >= (PROT_READ | PROT_EXEC))) {
             libkernel_sys_base = (uint8_t *)entries[i].start;
@@ -350,12 +370,13 @@ PAYLOAD_CODE int shellui_patch(void)
         ret = -1;
         goto error;
     }
-
+	
     // enable debug settings menu
     for (int i = 0; i < COUNT_OF(ofs_to_ret_1); i++) {
-        ret = proc_write_mem(ssui, (void *)(libkernel_sys_base + ofs_to_ret_1[i]), sizeof(mov__eax_1__ret), mov__eax_1__ret, &n);
-        if (ret)
-            goto error;
+    ret = proc_write_mem(ssui, (void *)(libkernel_sys_base + ofs_to_ret_1[i]), sizeof(mov__eax_1__ret), mov__eax_1__ret, &n);
+    if (ret) {
+       goto error;
+    }
     }
 
 error:
@@ -453,6 +474,7 @@ PAYLOAD_CODE void apply_patches() {
 PAYLOAD_CODE void install_patches()
 {
 	apply_patches();
-	eventhandler_register(NULL, "system_suspend_phase3", &restore_retail_dipsw, NULL, EVENTHANDLER_PRI_PRE_FIRST);
-	eventhandler_register(NULL, "system_resume_phase4", &apply_patches, NULL, EVENTHANDLER_PRI_LAST);
+	// Seems to kill rest mode
+	//eventhandler_register(NULL, "system_suspend_phase3", &restore_retail_dipsw, NULL, EVENTHANDLER_PRI_PRE_FIRST);
+	//eventhandler_register(NULL, "system_resume_phase4", &patch_debug_dipsw, NULL, EVENTHANDLER_PRI_LAST);
 }
