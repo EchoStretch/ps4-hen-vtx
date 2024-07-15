@@ -286,11 +286,8 @@ PAYLOAD_CODE int my_sceSblAuthMgrVerifyHeader(struct self_context* ctx)
 
 PAYLOAD_CODE int my_sceSblAuthMgrSmLoadSelfSegment__sceSblServiceMailbox(unsigned long service_id, uint8_t* request, void* response)
 {
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wframe-address"
 	// self_context is first param of caller. 0x08 = sizeof(struct self_context*)
 	uint8_t* frame = (uint8_t*)__builtin_frame_address(1);
-#pragma GCC diagnostic pop
 	struct self_context* ctx = *(struct self_context**)(frame - 0x08);
 
 	int is_unsigned = ctx && is_fake_self(ctx);
@@ -304,11 +301,8 @@ PAYLOAD_CODE int my_sceSblAuthMgrSmLoadSelfSegment__sceSblServiceMailbox(unsigne
 
 PAYLOAD_CODE int my_sceSblAuthMgrSmLoadSelfBlock__sceSblServiceMailbox(unsigned long service_id, uint8_t* request, void* response)
 {
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wframe-address"
 	// self_context is first param of caller. 0x08 = sizeof(struct self_context*)
 	uint8_t* frame = (uint8_t*)__builtin_frame_address(1);
-#pragma GCC diagnostic pop
 	struct self_context* ctx = *(struct self_context**)(frame - 0x08);
 
 	vm_offset_t segment_data_gpu_va = *(unsigned long*)(request + 0x08);
