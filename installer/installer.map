@@ -1,0 +1,1055 @@
+Archive member included to satisfy reference by file (symbol)
+
+../ps4-payload-sdk/libPS4/libPS4.a(debug.o)
+                              build/main.o (DEBUG_SOCK)
+../ps4-payload-sdk/libPS4/libPS4.a(file.o)
+                              build/main.o (unlink)
+../ps4-payload-sdk/libPS4/libPS4.a(kernel.o)
+                              build/main.o (kexec)
+../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+                              build/main.o (initLibc)
+../ps4-payload-sdk/libPS4/libPS4.a(module.o)
+                              ../ps4-payload-sdk/libPS4/libPS4.a(kernel.o) (getFunctionAddressByName)
+../ps4-payload-sdk/libPS4/libPS4.a(network.o)
+                              build/main.o (SckSend)
+../ps4-payload-sdk/libPS4/libPS4.a(payload_utils.o)
+                              build/main.o (get_firmware_string)
+../ps4-payload-sdk/libPS4/libPS4.a(sysutil.o)
+                              build/main.o (initSysUtil)
+../ps4-payload-sdk/libPS4/libPS4.a(syscall.o)
+                              build/main.o (syscall)
+../ps4-payload-sdk/libPS4/libPS4.a(memory.o)
+                              ../ps4-payload-sdk/libPS4/libPS4.a(payload_utils.o) (mmap)
+
+Merging program properties
+
+Removed property 0xc0000002 to merge build/main.o (0x3) and /tmp/cc0zZLZT.o (not found)
+Removed property 0xc0000002 to merge build/main.o (not found) and ../ps4-payload-sdk/libPS4/libPS4.a(debug.o) (0x3)
+Removed property 0xc0000002 to merge build/main.o (not found) and ../ps4-payload-sdk/libPS4/libPS4.a(file.o) (0x3)
+Removed property 0xc0000002 to merge build/main.o (not found) and ../ps4-payload-sdk/libPS4/libPS4.a(kernel.o) (0x3)
+Removed property 0xc0000002 to merge build/main.o (not found) and ../ps4-payload-sdk/libPS4/libPS4.a(libc.o) (0x3)
+Removed property 0xc0000002 to merge build/main.o (not found) and ../ps4-payload-sdk/libPS4/libPS4.a(module.o) (0x3)
+Removed property 0xc0000002 to merge build/main.o (not found) and ../ps4-payload-sdk/libPS4/libPS4.a(network.o) (0x3)
+Removed property 0xc0000002 to merge build/main.o (not found) and ../ps4-payload-sdk/libPS4/libPS4.a(payload_utils.o) (0x3)
+Removed property 0xc0000002 to merge build/main.o (not found) and ../ps4-payload-sdk/libPS4/libPS4.a(sysutil.o) (0x3)
+Removed property 0xc0000002 to merge build/main.o (not found) and ../ps4-payload-sdk/libPS4/libPS4.a(memory.o) (0x3)
+
+Discarded input sections
+
+ .data          0x0000000000000000        0x0 /tmp/cc0zZLZT.o
+ .bss           0x0000000000000000        0x0 /tmp/cc0zZLZT.o
+ .text          0x0000000000000000        0x0 build/embed.o
+ .data          0x0000000000000000        0x0 build/embed.o
+ .bss           0x0000000000000000        0x0 build/embed.o
+ .text          0x0000000000000000        0x0 build/main.o
+ .data          0x0000000000000000        0x0 build/main.o
+ .bss           0x0000000000000000        0x0 build/main.o
+ .comment       0x0000000000000000       0x2c build/main.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 build/main.o
+ .note.gnu.property
+                0x0000000000000000       0x20 build/main.o
+ .eh_frame      0x0000000000000000       0xc8 build/main.o
+ .text          0x0000000000000000        0x0 ../ps4-payload-sdk/libPS4/libPS4.a(debug.o)
+ .data          0x0000000000000000        0x0 ../ps4-payload-sdk/libPS4/libPS4.a(debug.o)
+ .bss           0x0000000000000000        0x0 ../ps4-payload-sdk/libPS4/libPS4.a(debug.o)
+ .comment       0x0000000000000000       0x2c ../ps4-payload-sdk/libPS4/libPS4.a(debug.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 ../ps4-payload-sdk/libPS4/libPS4.a(debug.o)
+ .note.gnu.property
+                0x0000000000000000       0x20 ../ps4-payload-sdk/libPS4/libPS4.a(debug.o)
+ .data          0x0000000000000000        0x0 ../ps4-payload-sdk/libPS4/libPS4.a(file.o)
+ .bss           0x0000000000000000        0x0 ../ps4-payload-sdk/libPS4/libPS4.a(file.o)
+ .text.getSandboxDirectory
+                0x0000000000000000       0x1b ../ps4-payload-sdk/libPS4/libPS4.a(file.o)
+ .text.file_exists
+                0x0000000000000000       0x23 ../ps4-payload-sdk/libPS4/libPS4.a(file.o)
+ .text.dir_exists
+                0x0000000000000000       0x28 ../ps4-payload-sdk/libPS4/libPS4.a(file.o)
+ .text.symlink_exists
+                0x0000000000000000       0x38 ../ps4-payload-sdk/libPS4/libPS4.a(file.o)
+ .text.touch_file
+                0x0000000000000000       0x23 ../ps4-payload-sdk/libPS4/libPS4.a(file.o)
+ .text.copy_file
+                0x0000000000000000       0x93 ../ps4-payload-sdk/libPS4/libPS4.a(file.o)
+ .rodata.copy_dir.str1.1
+                0x0000000000000000        0xb ../ps4-payload-sdk/libPS4/libPS4.a(file.o)
+ .text.copy_dir
+                0x0000000000000000      0x13b ../ps4-payload-sdk/libPS4/libPS4.a(file.o)
+ .text.file_compare
+                0x0000000000000000      0x171 ../ps4-payload-sdk/libPS4/libPS4.a(file.o)
+ .text.rmtree   0x0000000000000000      0x151 ../ps4-payload-sdk/libPS4/libPS4.a(file.o)
+ .text.fgetc_pointer
+                0x0000000000000000       0x2c ../ps4-payload-sdk/libPS4/libPS4.a(file.o)
+ .text.build_iovec
+                0x0000000000000000       0xf6 ../ps4-payload-sdk/libPS4/libPS4.a(file.o)
+ .rodata.mount_large_fs.str1.1
+                0x0000000000000000       0x4b ../ps4-payload-sdk/libPS4/libPS4.a(file.o)
+ .text.mount_large_fs
+                0x0000000000000000      0x14a ../ps4-payload-sdk/libPS4/libPS4.a(file.o)
+ .comment       0x0000000000000000       0x2c ../ps4-payload-sdk/libPS4/libPS4.a(file.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 ../ps4-payload-sdk/libPS4/libPS4.a(file.o)
+ .note.gnu.property
+                0x0000000000000000       0x20 ../ps4-payload-sdk/libPS4/libPS4.a(file.o)
+ .eh_frame      0x0000000000000000      0x278 ../ps4-payload-sdk/libPS4/libPS4.a(file.o)
+ .data          0x0000000000000000        0x0 ../ps4-payload-sdk/libPS4/libPS4.a(kernel.o)
+ .bss           0x0000000000000000        0x0 ../ps4-payload-sdk/libPS4/libPS4.a(kernel.o)
+ .comment       0x0000000000000000       0x2c ../ps4-payload-sdk/libPS4/libPS4.a(kernel.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 ../ps4-payload-sdk/libPS4/libPS4.a(kernel.o)
+ .note.gnu.property
+                0x0000000000000000       0x20 ../ps4-payload-sdk/libPS4/libPS4.a(kernel.o)
+ .eh_frame      0x0000000000000000       0x40 ../ps4-payload-sdk/libPS4/libPS4.a(kernel.o)
+ .text          0x0000000000000000        0x0 ../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+ .data          0x0000000000000000        0x0 ../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+ .bss           0x0000000000000000        0x0 ../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+ .text.memset_s
+                0x0000000000000000       0x51 ../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+ .comment       0x0000000000000000       0x2c ../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 ../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+ .note.gnu.property
+                0x0000000000000000       0x20 ../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+ .eh_frame      0x0000000000000000       0x68 ../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+ .data          0x0000000000000000        0x0 ../ps4-payload-sdk/libPS4/libPS4.a(module.o)
+ .bss           0x0000000000000000        0x0 ../ps4-payload-sdk/libPS4/libPS4.a(module.o)
+ .text.getModuleInfo
+                0x0000000000000000       0x1f ../ps4-payload-sdk/libPS4/libPS4.a(module.o)
+ .text.unloadModule
+                0x0000000000000000       0x19 ../ps4-payload-sdk/libPS4/libPS4.a(module.o)
+ .rodata.initModule.str1.1
+                0x0000000000000000       0x2c ../ps4-payload-sdk/libPS4/libPS4.a(module.o)
+ .text.initModule
+                0x0000000000000000       0x47 ../ps4-payload-sdk/libPS4/libPS4.a(module.o)
+ .bss.sceSysmoduleLoadModule
+                0x0000000000000000        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(module.o)
+ .bss.libModule
+                0x0000000000000000        0x4 ../ps4-payload-sdk/libPS4/libPS4.a(module.o)
+ .comment       0x0000000000000000       0x2c ../ps4-payload-sdk/libPS4/libPS4.a(module.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 ../ps4-payload-sdk/libPS4/libPS4.a(module.o)
+ .note.gnu.property
+                0x0000000000000000       0x20 ../ps4-payload-sdk/libPS4/libPS4.a(module.o)
+ .eh_frame      0x0000000000000000       0x80 ../ps4-payload-sdk/libPS4/libPS4.a(module.o)
+ .text          0x0000000000000000        0x0 ../ps4-payload-sdk/libPS4/libPS4.a(network.o)
+ .data          0x0000000000000000        0x0 ../ps4-payload-sdk/libPS4/libPS4.a(network.o)
+ .bss           0x0000000000000000        0x0 ../ps4-payload-sdk/libPS4/libPS4.a(network.o)
+ .rodata.initNetwork.str1.1
+                0x0000000000000000      0x173 ../ps4-payload-sdk/libPS4/libPS4.a(network.o)
+ .text.initNetwork
+                0x0000000000000000      0x258 ../ps4-payload-sdk/libPS4/libPS4.a(network.o)
+ .text.SckConnect
+                0x0000000000000000       0xa3 ../ps4-payload-sdk/libPS4/libPS4.a(network.o)
+ .text.SckClose
+                0x0000000000000000        0xd ../ps4-payload-sdk/libPS4/libPS4.a(network.o)
+ .text.SckRecv  0x0000000000000000       0xcc ../ps4-payload-sdk/libPS4/libPS4.a(network.o)
+ .text.SckRecvf
+                0x0000000000000000       0x7b ../ps4-payload-sdk/libPS4/libPS4.a(network.o)
+ .bss.sceNetCtlGetInfo
+                0x0000000000000000        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(network.o)
+ .bss.sceNetCtlTerm
+                0x0000000000000000        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(network.o)
+ .bss.sceNetCtlInit
+                0x0000000000000000        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(network.o)
+ .bss.sceNetNtohs
+                0x0000000000000000        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(network.o)
+ .bss.sceNetNtohl
+                0x0000000000000000        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(network.o)
+ .bss.sceNetNtohll
+                0x0000000000000000        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(network.o)
+ .bss.sceNetHtons
+                0x0000000000000000        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(network.o)
+ .bss.sceNetHtonl
+                0x0000000000000000        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(network.o)
+ .bss.sceNetHtonll
+                0x0000000000000000        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(network.o)
+ .bss.sceNetInetPton
+                0x0000000000000000        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(network.o)
+ .bss.sceNetInetNtop
+                0x0000000000000000        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(network.o)
+ .bss.sceNetSetsockopt
+                0x0000000000000000        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(network.o)
+ .bss.sceNetGetsockopt
+                0x0000000000000000        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(network.o)
+ .bss.sceNetGetsockname
+                0x0000000000000000        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(network.o)
+ .bss.sceNetSocketAbort
+                0x0000000000000000        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(network.o)
+ .bss.sceNetRecv
+                0x0000000000000000        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(network.o)
+ .bss.sceNetAccept
+                0x0000000000000000        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(network.o)
+ .bss.sceNetListen
+                0x0000000000000000        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(network.o)
+ .bss.sceNetBind
+                0x0000000000000000        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(network.o)
+ .bss.sceNetConnect
+                0x0000000000000000        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(network.o)
+ .bss.sceNetSocketClose
+                0x0000000000000000        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(network.o)
+ .bss.sceNetSocket
+                0x0000000000000000        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(network.o)
+ .bss.sceNetErrnoLoc
+                0x0000000000000000        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(network.o)
+ .bss.libNetCtl
+                0x0000000000000000        0x4 ../ps4-payload-sdk/libPS4/libPS4.a(network.o)
+ .bss.libNet    0x0000000000000000        0x4 ../ps4-payload-sdk/libPS4/libPS4.a(network.o)
+ .comment       0x0000000000000000       0x2c ../ps4-payload-sdk/libPS4/libPS4.a(network.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 ../ps4-payload-sdk/libPS4/libPS4.a(network.o)
+ .note.gnu.property
+                0x0000000000000000       0x20 ../ps4-payload-sdk/libPS4/libPS4.a(network.o)
+ .eh_frame      0x0000000000000000      0x110 ../ps4-payload-sdk/libPS4/libPS4.a(network.o)
+ .text          0x0000000000000000        0x0 ../ps4-payload-sdk/libPS4/libPS4.a(payload_utils.o)
+ .data          0x0000000000000000        0x0 ../ps4-payload-sdk/libPS4/libPS4.a(payload_utils.o)
+ .bss           0x0000000000000000        0x0 ../ps4-payload-sdk/libPS4/libPS4.a(payload_utils.o)
+ .rodata.kpayload_kbase.str1.1
+                0x0000000000000000       0x15 ../ps4-payload-sdk/libPS4/libPS4.a(payload_utils.o)
+ .text.kpayload_kbase
+                0x0000000000000000      0x66f ../ps4-payload-sdk/libPS4/libPS4.a(payload_utils.o)
+ .rodata.kpayload_kbase
+                0x0000000000000000       0x50 ../ps4-payload-sdk/libPS4/libPS4.a(payload_utils.o)
+ .text.kpayload_dump
+                0x0000000000000000      0x5aa ../ps4-payload-sdk/libPS4/libPS4.a(payload_utils.o)
+ .rodata.kpayload_dump
+                0x0000000000000000       0x50 ../ps4-payload-sdk/libPS4/libPS4.a(payload_utils.o)
+ .text.kpayload_jailbreak
+                0x0000000000000000      0x6db ../ps4-payload-sdk/libPS4/libPS4.a(payload_utils.o)
+ .rodata.kpayload_jailbreak
+                0x0000000000000000       0x50 ../ps4-payload-sdk/libPS4/libPS4.a(payload_utils.o)
+ .text.kpayload_mmap
+                0x0000000000000000      0x74d ../ps4-payload-sdk/libPS4/libPS4.a(payload_utils.o)
+ .rodata.kpayload_mmap
+                0x0000000000000000       0x50 ../ps4-payload-sdk/libPS4/libPS4.a(payload_utils.o)
+ .text.kpayload_aslr
+                0x0000000000000000      0x814 ../ps4-payload-sdk/libPS4/libPS4.a(payload_utils.o)
+ .rodata.kpayload_aslr
+                0x0000000000000000       0x50 ../ps4-payload-sdk/libPS4/libPS4.a(payload_utils.o)
+ .rodata.kpayload_kernel_clock.str1.1
+                0x0000000000000000       0xe7 ../ps4-payload-sdk/libPS4/libPS4.a(payload_utils.o)
+ .text.kpayload_kernel_clock
+                0x0000000000000000     0x1037 ../ps4-payload-sdk/libPS4/libPS4.a(payload_utils.o)
+ .rodata.kpayload_kernel_clock
+                0x0000000000000000       0x50 ../ps4-payload-sdk/libPS4/libPS4.a(payload_utils.o)
+ .text.kpayload_enable_browser
+                0x0000000000000000      0x654 ../ps4-payload-sdk/libPS4/libPS4.a(payload_utils.o)
+ .rodata.kpayload_enable_browser
+                0x0000000000000000       0x50 ../ps4-payload-sdk/libPS4/libPS4.a(payload_utils.o)
+ .text.kpayload_target_id
+                0x0000000000000000      0x5b7 ../ps4-payload-sdk/libPS4/libPS4.a(payload_utils.o)
+ .rodata.kpayload_target_id
+                0x0000000000000000       0x50 ../ps4-payload-sdk/libPS4/libPS4.a(payload_utils.o)
+ .text.kpayload_perm_uart
+                0x0000000000000000      0x600 ../ps4-payload-sdk/libPS4/libPS4.a(payload_utils.o)
+ .rodata.kpayload_perm_uart
+                0x0000000000000000       0x50 ../ps4-payload-sdk/libPS4/libPS4.a(payload_utils.o)
+ .text.kpayload_exit_idu
+                0x0000000000000000      0x600 ../ps4-payload-sdk/libPS4/libPS4.a(payload_utils.o)
+ .rodata.kpayload_exit_idu
+                0x0000000000000000       0x50 ../ps4-payload-sdk/libPS4/libPS4.a(payload_utils.o)
+ .text.kpayload_npdrm_patch
+                0x0000000000000000      0x8aa ../ps4-payload-sdk/libPS4/libPS4.a(payload_utils.o)
+ .rodata.kpayload_npdrm_patch
+                0x0000000000000000       0x50 ../ps4-payload-sdk/libPS4/libPS4.a(payload_utils.o)
+ .rodata.is_jailbroken.str1.1
+                0x0000000000000000       0x11 ../ps4-payload-sdk/libPS4/libPS4.a(payload_utils.o)
+ .text.is_jailbroken
+                0x0000000000000000       0x3a ../ps4-payload-sdk/libPS4/libPS4.a(payload_utils.o)
+ .rodata.is_fw_spoofed.str1.1
+                0x0000000000000000        0xc ../ps4-payload-sdk/libPS4/libPS4.a(payload_utils.o)
+ .text.is_fw_spoofed
+                0x0000000000000000       0xb4 ../ps4-payload-sdk/libPS4/libPS4.a(payload_utils.o)
+ .text.get_kernel_base
+                0x0000000000000000       0x88 ../ps4-payload-sdk/libPS4/libPS4.a(payload_utils.o)
+ .text.get_memory_dump
+                0x0000000000000000       0x47 ../ps4-payload-sdk/libPS4/libPS4.a(payload_utils.o)
+ .text.jailbreak
+                0x0000000000000000       0x37 ../ps4-payload-sdk/libPS4/libPS4.a(payload_utils.o)
+ .text.mmap_patch
+                0x0000000000000000       0x2a ../ps4-payload-sdk/libPS4/libPS4.a(payload_utils.o)
+ .text.disable_aslr
+                0x0000000000000000       0x2a ../ps4-payload-sdk/libPS4/libPS4.a(payload_utils.o)
+ .text.kernel_clock
+                0x0000000000000000       0x31 ../ps4-payload-sdk/libPS4/libPS4.a(payload_utils.o)
+ .text.enable_browser
+                0x0000000000000000       0x2a ../ps4-payload-sdk/libPS4/libPS4.a(payload_utils.o)
+ .text.spoof_target_id
+                0x0000000000000000       0x32 ../ps4-payload-sdk/libPS4/libPS4.a(payload_utils.o)
+ .text.enable_perm_uart
+                0x0000000000000000       0x2a ../ps4-payload-sdk/libPS4/libPS4.a(payload_utils.o)
+ .text.exit_idu
+                0x0000000000000000       0x2a ../ps4-payload-sdk/libPS4/libPS4.a(payload_utils.o)
+ .text.npdrm_patch
+                0x0000000000000000       0x2a ../ps4-payload-sdk/libPS4/libPS4.a(payload_utils.o)
+ .comment       0x0000000000000000       0x2c ../ps4-payload-sdk/libPS4/libPS4.a(payload_utils.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 ../ps4-payload-sdk/libPS4/libPS4.a(payload_utils.o)
+ .note.gnu.property
+                0x0000000000000000       0x20 ../ps4-payload-sdk/libPS4/libPS4.a(payload_utils.o)
+ .eh_frame      0x0000000000000000      0x408 ../ps4-payload-sdk/libPS4/libPS4.a(payload_utils.o)
+ .text          0x0000000000000000        0x0 ../ps4-payload-sdk/libPS4/libPS4.a(sysutil.o)
+ .data          0x0000000000000000        0x0 ../ps4-payload-sdk/libPS4/libPS4.a(sysutil.o)
+ .bss           0x0000000000000000        0x0 ../ps4-payload-sdk/libPS4/libPS4.a(sysutil.o)
+ .rodata.initUserService.str1.1
+                0x0000000000000000       0xb3 ../ps4-payload-sdk/libPS4/libPS4.a(sysutil.o)
+ .text.initUserService
+                0x0000000000000000       0x9f ../ps4-payload-sdk/libPS4/libPS4.a(sysutil.o)
+ .text.openBrowser
+                0x0000000000000000       0x12 ../ps4-payload-sdk/libPS4/libPS4.a(sysutil.o)
+ .text.getUserIDList
+                0x0000000000000000       0x42 ../ps4-payload-sdk/libPS4/libPS4.a(sysutil.o)
+ .text.getUserID
+                0x0000000000000000       0x18 ../ps4-payload-sdk/libPS4/libPS4.a(sysutil.o)
+ .text.getUserName
+                0x0000000000000000       0x8a ../ps4-payload-sdk/libPS4/libPS4.a(sysutil.o)
+ .text.getInitialUser
+                0x0000000000000000       0x45 ../ps4-payload-sdk/libPS4/libPS4.a(sysutil.o)
+ .rodata.shutdown.str1.1
+                0x0000000000000000       0x11 ../ps4-payload-sdk/libPS4/libPS4.a(sysutil.o)
+ .text.shutdown
+                0x0000000000000000       0x54 ../ps4-payload-sdk/libPS4/libPS4.a(sysutil.o)
+ .rodata.reboot.str1.1
+                0x0000000000000000       0x32 ../ps4-payload-sdk/libPS4/libPS4.a(sysutil.o)
+ .text.reboot   0x0000000000000000       0x45 ../ps4-payload-sdk/libPS4/libPS4.a(sysutil.o)
+ .bss.sceKernelReboot
+                0x0000000000000000        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(sysutil.o)
+ .bss.sceUserServiceTerminate
+                0x0000000000000000        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(sysutil.o)
+ .bss.sceUserServiceGetInitialUser
+                0x0000000000000000        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(sysutil.o)
+ .bss.sceUserServiceGetUserName
+                0x0000000000000000        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(sysutil.o)
+ .bss.sceUserServiceGetLoginUserIdList
+                0x0000000000000000        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(sysutil.o)
+ .bss.sceUserServiceInitialize
+                0x0000000000000000        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(sysutil.o)
+ .bss.libSceUserService
+                0x0000000000000000        0x4 ../ps4-payload-sdk/libPS4/libPS4.a(sysutil.o)
+ .comment       0x0000000000000000       0x2c ../ps4-payload-sdk/libPS4/libPS4.a(sysutil.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 ../ps4-payload-sdk/libPS4/libPS4.a(sysutil.o)
+ .note.gnu.property
+                0x0000000000000000       0x20 ../ps4-payload-sdk/libPS4/libPS4.a(sysutil.o)
+ .eh_frame      0x0000000000000000      0x120 ../ps4-payload-sdk/libPS4/libPS4.a(sysutil.o)
+ .data          0x0000000000000000        0x0 ../ps4-payload-sdk/libPS4/libPS4.a(syscall.o)
+ .bss           0x0000000000000000        0x0 ../ps4-payload-sdk/libPS4/libPS4.a(syscall.o)
+ .text          0x0000000000000000       0x60 ../ps4-payload-sdk/libPS4/libPS4.a(memory.o)
+ .data          0x0000000000000000        0x0 ../ps4-payload-sdk/libPS4/libPS4.a(memory.o)
+ .bss           0x0000000000000000        0x0 ../ps4-payload-sdk/libPS4/libPS4.a(memory.o)
+ .comment       0x0000000000000000       0x2c ../ps4-payload-sdk/libPS4/libPS4.a(memory.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 ../ps4-payload-sdk/libPS4/libPS4.a(memory.o)
+ .note.gnu.property
+                0x0000000000000000       0x20 ../ps4-payload-sdk/libPS4/libPS4.a(memory.o)
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+LOAD /tmp/cc0zZLZT.o
+LOAD build/embed.o
+LOAD build/main.o
+
+.text           0x0000000000000000     0x1328
+ *(.text.start)
+ *(.text*)
+ .text          0x0000000000000000        0x5 /tmp/cc0zZLZT.o
+                0x0000000000000000                _start
+ .text.install_payload
+                0x0000000000000005      0x1a7 build/main.o
+                0x0000000000000005                install_payload
+ .text._main    0x00000000000001ac      0x3a8 build/main.o
+                0x00000000000001ac                _main
+ .text          0x0000000000000554      0x108 ../ps4-payload-sdk/libPS4/libPS4.a(file.o)
+                0x0000000000000554                read
+                0x0000000000000560                write
+                0x000000000000056c                open
+                0x0000000000000578                close
+                0x0000000000000584                unlink
+                0x0000000000000590                link
+                0x000000000000059c                readlink
+                0x00000000000005a8                symlink
+                0x00000000000005b4                mount
+                0x00000000000005c0                nmount
+                0x00000000000005cc                unmount
+                0x00000000000005d8                fchown
+                0x00000000000005e4                fchmod
+                0x00000000000005f0                rename
+                0x00000000000005fc                mkdir
+                0x0000000000000608                rmdir
+                0x0000000000000614                stat
+                0x0000000000000620                fstat
+                0x000000000000062c                lstat
+                0x0000000000000638                getdents
+                0x0000000000000644                lseek
+                0x0000000000000650                fstatat
+ .text          0x000000000000065c       0x24 ../ps4-payload-sdk/libPS4/libPS4.a(kernel.o)
+                0x000000000000065c                kill
+                0x0000000000000668                ioctl
+                0x0000000000000674                kexec
+ .text.initKernel
+                0x0000000000000680      0x38c ../ps4-payload-sdk/libPS4/libPS4.a(kernel.o)
+                0x0000000000000680                initKernel
+ .text.initLibc
+                0x0000000000000a0c      0x5cf ../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+                0x0000000000000a0c                initLibc
+ .text          0x0000000000000fdb       0x18 ../ps4-payload-sdk/libPS4/libPS4.a(module.o)
+                0x0000000000000fdb                getFunctionAddressByName
+                0x0000000000000fe7                getLoadedModules
+ .text.loadModule
+                0x0000000000000ff3       0x1e ../ps4-payload-sdk/libPS4/libPS4.a(module.o)
+                0x0000000000000ff3                loadModule
+ .text.SckSend  0x0000000000001011       0x15 ../ps4-payload-sdk/libPS4/libPS4.a(network.o)
+                0x0000000000001011                SckSend
+ .text.get_firmware
+                0x0000000000001026      0x191 ../ps4-payload-sdk/libPS4/libPS4.a(payload_utils.o)
+                0x0000000000001026                get_firmware
+ .text.get_firmware_string
+                0x00000000000011b7       0xbd ../ps4-payload-sdk/libPS4/libPS4.a(payload_utils.o)
+                0x00000000000011b7                get_firmware_string
+ .text.initSysUtil
+                0x0000000000001274       0x86 ../ps4-payload-sdk/libPS4/libPS4.a(sysutil.o)
+                0x0000000000001274                initSysUtil
+ .text          0x00000000000012fa       0x2e ../ps4-payload-sdk/libPS4/libPS4.a(syscall.o)
+                0x00000000000012fa                syscall
+                0x00000000000012fd                syscall_macro
+
+.plt            0x0000000000001330        0x0
+ .plt           0x0000000000001330        0x0 /tmp/cc0zZLZT.o
+
+.plt.got        0x0000000000001328        0x0
+ .plt.got       0x0000000000001328        0x0 /tmp/cc0zZLZT.o
+
+.rodata         0x0000000000001328     0x2708
+ *(.rodata)
+ .rodata        0x0000000000001328     0x2024 build/embed.o
+                0x0000000000001328                kpayload
+                0x0000000000003348                kpayload_size
+ *(.rodata*)
+ .rodata.install_payload.str1.1
+                0x000000000000334c        0x7 build/main.o
+ .rodata._main.str1.1
+                0x0000000000003353      0x11a build/main.o
+ .rodata.initKernel.str1.1
+                0x000000000000346d      0x2d4 ../ps4-payload-sdk/libPS4/libPS4.a(kernel.o)
+ .rodata.initLibc.str1.1
+                0x0000000000003741      0x1f8 ../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+                                        0x216 (size before relaxing)
+ .rodata.get_firmware.str1.1
+                0x0000000000003939       0x41 ../ps4-payload-sdk/libPS4/libPS4.a(payload_utils.o)
+ .rodata.get_firmware_string.str1.1
+                0x000000000000397a       0x1a ../ps4-payload-sdk/libPS4/libPS4.a(payload_utils.o)
+                                         0x22 (size before relaxing)
+ .rodata.initSysUtil.str1.1
+                0x0000000000003994       0x9c ../ps4-payload-sdk/libPS4/libPS4.a(sysutil.o)
+
+.gnu.version_d  0x0000000000003a30        0x0
+ .gnu.version_d
+                0x0000000000003a30        0x0 /tmp/cc0zZLZT.o
+
+.gnu.version    0x0000000000003a30        0x0
+ .gnu.version   0x0000000000003a30        0x0 /tmp/cc0zZLZT.o
+
+.gnu.version_r  0x0000000000003a30        0x0
+ .gnu.version_r
+                0x0000000000003a30        0x0 /tmp/cc0zZLZT.o
+
+.dynsym         0x0000000000003a30       0x18
+ .dynsym        0x0000000000003a30       0x18 /tmp/cc0zZLZT.o
+
+.dynstr         0x0000000000003a48        0x1
+ .dynstr        0x0000000000003a48        0x1 /tmp/cc0zZLZT.o
+
+.gnu.hash       0x0000000000003a50       0x1c
+ .gnu.hash      0x0000000000003a50       0x1c /tmp/cc0zZLZT.o
+
+.eh_frame_hdr   0x0000000000003a6c        0x0
+ .eh_frame_hdr  0x0000000000003a6c        0x0 build/main.o
+
+.rela.dyn       0x0000000000003a70        0x0
+ .rela.plt      0x0000000000003a70        0x0 /tmp/cc0zZLZT.o
+ .rela.got      0x0000000000003a70        0x0 /tmp/cc0zZLZT.o
+ .rela.bss      0x0000000000003a70        0x0 /tmp/cc0zZLZT.o
+ .rela.data.rel.ro
+                0x0000000000003a70        0x0 /tmp/cc0zZLZT.o
+ .rela.ifunc    0x0000000000003a70        0x0 /tmp/cc0zZLZT.o
+
+.data
+ *(.data)
+
+.dynamic        0x0000000000003a70       0xe0
+ .dynamic       0x0000000000003a70       0xe0 /tmp/cc0zZLZT.o
+                0x0000000000003a70                _DYNAMIC
+
+.got            0x0000000000003b50        0x0
+ .got           0x0000000000003b50        0x0 /tmp/cc0zZLZT.o
+
+.got.plt        0x0000000000003b50        0x0
+ .got.plt       0x0000000000003b50        0x0 /tmp/cc0zZLZT.o
+
+.data.rel.ro    0x0000000000003b50        0x0
+ .data.rel.ro   0x0000000000003b50        0x0 /tmp/cc0zZLZT.o
+
+.data.DEBUG_SOCK
+                0x0000000000003b50        0x4
+ .data.DEBUG_SOCK
+                0x0000000000003b50        0x4 ../ps4-payload-sdk/libPS4/libPS4.a(debug.o)
+                0x0000000000003b50                DEBUG_SOCK
+
+.bss
+ *(.bss)
+
+.dynbss         0x0000000000003b54        0x0
+ .dynbss        0x0000000000003b54        0x0 /tmp/cc0zZLZT.o
+
+.bss.sceKernelGetCpuTemperature
+                0x0000000000003b58        0x8
+ .bss.sceKernelGetCpuTemperature
+                0x0000000000003b58        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(kernel.o)
+                0x0000000000003b58                sceKernelGetCpuTemperature
+
+.bss.sceKernelGetSystemSwVersion
+                0x0000000000003b60        0x8
+ .bss.sceKernelGetSystemSwVersion
+                0x0000000000003b60        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(kernel.o)
+                0x0000000000003b60                sceKernelGetSystemSwVersion
+
+.bss.sceKernelGetFsSandboxRandomWord
+                0x0000000000003b68        0x8
+ .bss.sceKernelGetFsSandboxRandomWord
+                0x0000000000003b68        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(kernel.o)
+                0x0000000000003b68                sceKernelGetFsSandboxRandomWord
+
+.bss.sceKernelSendNotificationRequest
+                0x0000000000003b70        0x8
+ .bss.sceKernelSendNotificationRequest
+                0x0000000000003b70        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(kernel.o)
+                0x0000000000003b70                sceKernelSendNotificationRequest
+
+.bss.setregid   0x0000000000003b78        0x8
+ .bss.setregid  0x0000000000003b78        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(kernel.o)
+                0x0000000000003b78                setregid
+
+.bss.setreuid   0x0000000000003b80        0x8
+ .bss.setreuid  0x0000000000003b80        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(kernel.o)
+                0x0000000000003b80                setreuid
+
+.bss.setgid     0x0000000000003b88        0x8
+ .bss.setgid    0x0000000000003b88        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(kernel.o)
+                0x0000000000003b88                setgid
+
+.bss.setuid     0x0000000000003b90        0x8
+ .bss.setuid    0x0000000000003b90        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(kernel.o)
+                0x0000000000003b90                setuid
+
+.bss.getpid     0x0000000000003b98        0x8
+ .bss.getpid    0x0000000000003b98        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(kernel.o)
+                0x0000000000003b98                getpid
+
+.bss.getgid     0x0000000000003ba0        0x8
+ .bss.getgid    0x0000000000003ba0        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(kernel.o)
+                0x0000000000003ba0                getgid
+
+.bss.getuid     0x0000000000003ba8        0x8
+ .bss.getuid    0x0000000000003ba8        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(kernel.o)
+                0x0000000000003ba8                getuid
+
+.bss.sceKernelAddReadEvent
+                0x0000000000003bb0        0x8
+ .bss.sceKernelAddReadEvent
+                0x0000000000003bb0        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(kernel.o)
+                0x0000000000003bb0                sceKernelAddReadEvent
+
+.bss.sceKernelAddUserEvent
+                0x0000000000003bb8        0x8
+ .bss.sceKernelAddUserEvent
+                0x0000000000003bb8        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(kernel.o)
+                0x0000000000003bb8                sceKernelAddUserEvent
+
+.bss.sceKernelDeleteEqueue
+                0x0000000000003bc0        0x8
+ .bss.sceKernelDeleteEqueue
+                0x0000000000003bc0        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(kernel.o)
+                0x0000000000003bc0                sceKernelDeleteEqueue
+
+.bss.sceKernelCreateEqueue
+                0x0000000000003bc8        0x8
+ .bss.sceKernelCreateEqueue
+                0x0000000000003bc8        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(kernel.o)
+                0x0000000000003bc8                sceKernelCreateEqueue
+
+.bss.pthread_setaffinity_np
+                0x0000000000003bd0        0x8
+ .bss.pthread_setaffinity_np
+                0x0000000000003bd0        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(kernel.o)
+                0x0000000000003bd0                pthread_setaffinity_np
+
+.bss.pthread_self
+                0x0000000000003bd8        0x8
+ .bss.pthread_self
+                0x0000000000003bd8        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(kernel.o)
+                0x0000000000003bd8                pthread_self
+
+.bss.execve     0x0000000000003be0        0x8
+ .bss.execve    0x0000000000003be0        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(kernel.o)
+                0x0000000000003be0                execve
+
+.bss.sysarch    0x0000000000003be8        0x8
+ .bss.sysarch   0x0000000000003be8        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(kernel.o)
+                0x0000000000003be8                sysarch
+
+.bss.sysctlbyname
+                0x0000000000003bf0        0x8
+ .bss.sysctlbyname
+                0x0000000000003bf0        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(kernel.o)
+                0x0000000000003bf0                sysctlbyname
+
+.bss.sysctl     0x0000000000003bf8        0x8
+ .bss.sysctl    0x0000000000003bf8        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(kernel.o)
+                0x0000000000003bf8                sysctl
+
+.bss.sceKernelGetCurrentCpu
+                0x0000000000003c00        0x8
+ .bss.sceKernelGetCurrentCpu
+                0x0000000000003c00        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(kernel.o)
+                0x0000000000003c00                sceKernelGetCurrentCpu
+
+.bss.sceKernelGetProcessTime
+                0x0000000000003c08        0x8
+ .bss.sceKernelGetProcessTime
+                0x0000000000003c08        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(kernel.o)
+                0x0000000000003c08                sceKernelGetProcessTime
+
+.bss.sceKernelGettimeofday
+                0x0000000000003c10        0x8
+ .bss.sceKernelGettimeofday
+                0x0000000000003c10        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(kernel.o)
+                0x0000000000003c10                sceKernelGettimeofday
+
+.bss.sceKernelUsleep
+                0x0000000000003c18        0x8
+ .bss.sceKernelUsleep
+                0x0000000000003c18        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(kernel.o)
+                0x0000000000003c18                sceKernelUsleep
+
+.bss.sceKernelSleep
+                0x0000000000003c20        0x8
+ .bss.sceKernelSleep
+                0x0000000000003c20        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(kernel.o)
+                0x0000000000003c20                sceKernelSleep
+
+.bss.sceKernelClose
+                0x0000000000003c28        0x8
+ .bss.sceKernelClose
+                0x0000000000003c28        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(kernel.o)
+                0x0000000000003c28                sceKernelClose
+
+.bss.sceKernelLseek
+                0x0000000000003c30        0x8
+ .bss.sceKernelLseek
+                0x0000000000003c30        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(kernel.o)
+                0x0000000000003c30                sceKernelLseek
+
+.bss.sceKernelRead
+                0x0000000000003c38        0x8
+ .bss.sceKernelRead
+                0x0000000000003c38        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(kernel.o)
+                0x0000000000003c38                sceKernelRead
+
+.bss.sceKernelOpen
+                0x0000000000003c40        0x8
+ .bss.sceKernelOpen
+                0x0000000000003c40        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(kernel.o)
+                0x0000000000003c40                sceKernelOpen
+
+.bss.sceKernelStat
+                0x0000000000003c48        0x8
+ .bss.sceKernelStat
+                0x0000000000003c48        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(kernel.o)
+                0x0000000000003c48                sceKernelStat
+
+.bss.sceKernelGetDirectMemorySize
+                0x0000000000003c50        0x8
+ .bss.sceKernelGetDirectMemorySize
+                0x0000000000003c50        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(kernel.o)
+                0x0000000000003c50                sceKernelGetDirectMemorySize
+
+.bss.sceKernelMapDirectMemory
+                0x0000000000003c58        0x8
+ .bss.sceKernelMapDirectMemory
+                0x0000000000003c58        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(kernel.o)
+                0x0000000000003c58                sceKernelMapDirectMemory
+
+.bss.sceKernelAllocateDirectMemory
+                0x0000000000003c60        0x8
+ .bss.sceKernelAllocateDirectMemory
+                0x0000000000003c60        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(kernel.o)
+                0x0000000000003c60                sceKernelAllocateDirectMemory
+
+.bss.sceKernelLoadStartModule
+                0x0000000000003c68        0x8
+ .bss.sceKernelLoadStartModule
+                0x0000000000003c68        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(kernel.o)
+                0x0000000000003c68                sceKernelLoadStartModule
+
+.bss.sceKernelError
+                0x0000000000003c70        0x8
+ .bss.sceKernelError
+                0x0000000000003c70        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(kernel.o)
+                0x0000000000003c70                sceKernelError
+
+.bss.__error    0x0000000000003c78        0x8
+ .bss.__error   0x0000000000003c78        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(kernel.o)
+                0x0000000000003c78                __error
+
+.bss.__stack_chk_fail
+                0x0000000000003c80        0x8
+ .bss.__stack_chk_fail
+                0x0000000000003c80        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(kernel.o)
+                0x0000000000003c80                __stack_chk_fail
+
+.bss.__stack_chk_guard
+                0x0000000000003c88        0x8
+ .bss.__stack_chk_guard
+                0x0000000000003c88        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(kernel.o)
+                0x0000000000003c88                __stack_chk_guard
+
+.bss.libKernelHandle
+                0x0000000000003c90        0x4
+ .bss.libKernelHandle
+                0x0000000000003c90        0x4 ../ps4-payload-sdk/libPS4/libPS4.a(kernel.o)
+                0x0000000000003c90                libKernelHandle
+
+.bss.fprintf    0x0000000000003c98        0x8
+ .bss.fprintf   0x0000000000003c98        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+                0x0000000000003c98                fprintf
+
+.bss.fclose     0x0000000000003ca0        0x8
+ .bss.fclose    0x0000000000003ca0        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+                0x0000000000003ca0                fclose
+
+.bss.ftell      0x0000000000003ca8        0x8
+ .bss.ftell     0x0000000000003ca8        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+                0x0000000000003ca8                ftell
+
+.bss.fseek      0x0000000000003cb0        0x8
+ .bss.fseek     0x0000000000003cb0        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+                0x0000000000003cb0                fseek
+
+.bss.fwrite     0x0000000000003cb8        0x8
+ .bss.fwrite    0x0000000000003cb8        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+                0x0000000000003cb8                fwrite
+
+.bss.fread      0x0000000000003cc0        0x8
+ .bss.fread     0x0000000000003cc0        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+                0x0000000000003cc0                fread
+
+.bss.fopen      0x0000000000003cc8        0x8
+ .bss.fopen     0x0000000000003cc8        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+                0x0000000000003cc8                fopen
+
+.bss.getprogname
+                0x0000000000003cd0        0x8
+ .bss.getprogname
+                0x0000000000003cd0        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+                0x0000000000003cd0                getprogname
+
+.bss.dirfd      0x0000000000003cd8        0x8
+ .bss.dirfd     0x0000000000003cd8        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+                0x0000000000003cd8                dirfd
+
+.bss.closedir   0x0000000000003ce0        0x8
+ .bss.closedir  0x0000000000003ce0        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+                0x0000000000003ce0                closedir
+
+.bss.rewinddir  0x0000000000003ce8        0x8
+ .bss.rewinddir
+                0x0000000000003ce8        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+                0x0000000000003ce8                rewinddir
+
+.bss.seekdir    0x0000000000003cf0        0x8
+ .bss.seekdir   0x0000000000003cf0        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+                0x0000000000003cf0                seekdir
+
+.bss.telldir    0x0000000000003cf8        0x8
+ .bss.telldir   0x0000000000003cf8        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+                0x0000000000003cf8                telldir
+
+.bss.readdir_r  0x0000000000003d00        0x8
+ .bss.readdir_r
+                0x0000000000003d00        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+                0x0000000000003d00                readdir_r
+
+.bss.readdir    0x0000000000003d08        0x8
+ .bss.readdir   0x0000000000003d08        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+                0x0000000000003d08                readdir
+
+.bss.opendir    0x0000000000003d10        0x8
+ .bss.opendir   0x0000000000003d10        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+                0x0000000000003d10                opendir
+
+.bss.mktime     0x0000000000003d18        0x8
+ .bss.mktime    0x0000000000003d18        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+                0x0000000000003d18                mktime
+
+.bss.localtime_r
+                0x0000000000003d20        0x8
+ .bss.localtime_r
+                0x0000000000003d20        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+                0x0000000000003d20                localtime_r
+
+.bss.localtime  0x0000000000003d28        0x8
+ .bss.localtime
+                0x0000000000003d28        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+                0x0000000000003d28                localtime
+
+.bss.gmtime_s   0x0000000000003d30        0x8
+ .bss.gmtime_s  0x0000000000003d30        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+                0x0000000000003d30                gmtime_s
+
+.bss.gmtime     0x0000000000003d38        0x8
+ .bss.gmtime    0x0000000000003d38        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+                0x0000000000003d38                gmtime
+
+.bss.time       0x0000000000003d40        0x8
+ .bss.time      0x0000000000003d40        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+                0x0000000000003d40                time
+
+.bss.ctime_r    0x0000000000003d48        0x8
+ .bss.ctime_r   0x0000000000003d48        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+                0x0000000000003d48                ctime_r
+
+.bss.ctime      0x0000000000003d50        0x8
+ .bss.ctime     0x0000000000003d50        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+                0x0000000000003d50                ctime
+
+.bss.asctime_r  0x0000000000003d58        0x8
+ .bss.asctime_r
+                0x0000000000003d58        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+                0x0000000000003d58                asctime_r
+
+.bss.asctime    0x0000000000003d60        0x8
+ .bss.asctime   0x0000000000003d60        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+                0x0000000000003d60                asctime
+
+.bss.rand       0x0000000000003d68        0x8
+ .bss.rand      0x0000000000003d68        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+                0x0000000000003d68                rand
+
+.bss.srand      0x0000000000003d70        0x8
+ .bss.srand     0x0000000000003d70        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+                0x0000000000003d70                srand
+
+.bss.ceil       0x0000000000003d78        0x8
+ .bss.ceil      0x0000000000003d78        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+                0x0000000000003d78                ceil
+
+.bss.bcopy      0x0000000000003d80        0x8
+ .bss.bcopy     0x0000000000003d80        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+                0x0000000000003d80                bcopy
+
+.bss._Stoul     0x0000000000003d88        0x8
+ .bss._Stoul    0x0000000000003d88        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+                0x0000000000003d88                _Stoul
+
+.bss._Getpctype
+                0x0000000000003d90        0x8
+ .bss._Getpctype
+                0x0000000000003d90        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+                0x0000000000003d90                _Getpctype
+
+.bss.strerror   0x0000000000003d98        0x8
+ .bss.strerror  0x0000000000003d98        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+                0x0000000000003d98                strerror
+
+.bss.strlcpy    0x0000000000003da0        0x8
+ .bss.strlcpy   0x0000000000003da0        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+                0x0000000000003da0                strlcpy
+
+.bss.atof       0x0000000000003da8        0x8
+ .bss.atof      0x0000000000003da8        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+                0x0000000000003da8                atof
+
+.bss.atoi       0x0000000000003db0        0x8
+ .bss.atoi      0x0000000000003db0        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+                0x0000000000003db0                atoi
+
+.bss.isdigit    0x0000000000003db8        0x8
+ .bss.isdigit   0x0000000000003db8        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+                0x0000000000003db8                isdigit
+
+.bss.rindex     0x0000000000003dc0        0x8
+ .bss.rindex    0x0000000000003dc0        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+                0x0000000000003dc0                rindex
+
+.bss.index      0x0000000000003dc8        0x8
+ .bss.index     0x0000000000003dc8        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+                0x0000000000003dc8                index
+
+.bss.strdup     0x0000000000003dd0        0x8
+ .bss.strdup    0x0000000000003dd0        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+                0x0000000000003dd0                strdup
+
+.bss.strstr     0x0000000000003dd8        0x8
+ .bss.strstr    0x0000000000003dd8        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+                0x0000000000003dd8                strstr
+
+.bss.strrchr    0x0000000000003de0        0x8
+ .bss.strrchr   0x0000000000003de0        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+                0x0000000000003de0                strrchr
+
+.bss.strchr     0x0000000000003de8        0x8
+ .bss.strchr    0x0000000000003de8        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+                0x0000000000003de8                strchr
+
+.bss.strtok     0x0000000000003df0        0x8
+ .bss.strtok    0x0000000000003df0        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+                0x0000000000003df0                strtok
+
+.bss.strtol     0x0000000000003df8        0x8
+ .bss.strtol    0x0000000000003df8        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+                0x0000000000003df8                strtol
+
+.bss.sscanf     0x0000000000003e00        0x8
+ .bss.sscanf    0x0000000000003e00        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+                0x0000000000003e00                sscanf
+
+.bss.snprintf_s
+                0x0000000000003e08        0x8
+ .bss.snprintf_s
+                0x0000000000003e08        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+                0x0000000000003e08                snprintf_s
+
+.bss.snprintf   0x0000000000003e10        0x8
+ .bss.snprintf  0x0000000000003e10        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+                0x0000000000003e10                snprintf
+
+.bss.sprintf    0x0000000000003e18        0x8
+ .bss.sprintf   0x0000000000003e18        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+                0x0000000000003e18                sprintf
+
+.bss.strncmp    0x0000000000003e20        0x8
+ .bss.strncmp   0x0000000000003e20        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+                0x0000000000003e20                strncmp
+
+.bss.strcmp     0x0000000000003e28        0x8
+ .bss.strcmp    0x0000000000003e28        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+                0x0000000000003e28                strcmp
+
+.bss.strlen     0x0000000000003e30        0x8
+ .bss.strlen    0x0000000000003e30        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+                0x0000000000003e30                strlen
+
+.bss.strncat    0x0000000000003e38        0x8
+ .bss.strncat   0x0000000000003e38        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+                0x0000000000003e38                strncat
+
+.bss.strcat     0x0000000000003e40        0x8
+ .bss.strcat    0x0000000000003e40        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+                0x0000000000003e40                strcat
+
+.bss.strncpy_s  0x0000000000003e48        0x8
+ .bss.strncpy_s
+                0x0000000000003e48        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+                0x0000000000003e48                strncpy_s
+
+.bss.strncpy    0x0000000000003e50        0x8
+ .bss.strncpy   0x0000000000003e50        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+                0x0000000000003e50                strncpy
+
+.bss.strcpy     0x0000000000003e58        0x8
+ .bss.strcpy    0x0000000000003e58        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+                0x0000000000003e58                strcpy
+
+.bss.memmove_s  0x0000000000003e60        0x8
+ .bss.memmove_s
+                0x0000000000003e60        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+                0x0000000000003e60                memmove_s
+
+.bss.memmove    0x0000000000003e68        0x8
+ .bss.memmove   0x0000000000003e68        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+                0x0000000000003e68                memmove
+
+.bss.memcmp     0x0000000000003e70        0x8
+ .bss.memcmp    0x0000000000003e70        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+                0x0000000000003e70                memcmp
+
+.bss.memcpy     0x0000000000003e78        0x8
+ .bss.memcpy    0x0000000000003e78        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+                0x0000000000003e78                memcpy
+
+.bss.memset     0x0000000000003e80        0x8
+ .bss.memset    0x0000000000003e80        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+                0x0000000000003e80                memset
+
+.bss.memalign   0x0000000000003e88        0x8
+ .bss.memalign  0x0000000000003e88        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+                0x0000000000003e88                memalign
+
+.bss.realloc    0x0000000000003e90        0x8
+ .bss.realloc   0x0000000000003e90        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+                0x0000000000003e90                realloc
+
+.bss.calloc     0x0000000000003e98        0x8
+ .bss.calloc    0x0000000000003e98        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+                0x0000000000003e98                calloc
+
+.bss.free       0x0000000000003ea0        0x8
+ .bss.free      0x0000000000003ea0        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+                0x0000000000003ea0                free
+
+.bss.malloc     0x0000000000003ea8        0x8
+ .bss.malloc    0x0000000000003ea8        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+                0x0000000000003ea8                malloc
+
+.bss.libc       0x0000000000003eb0        0x4
+ .bss.libc      0x0000000000003eb0        0x4 ../ps4-payload-sdk/libPS4/libPS4.a(libc.o)
+                0x0000000000003eb0                libc
+
+.bss.sceNetSend
+                0x0000000000003eb8        0x8
+ .bss.sceNetSend
+                0x0000000000003eb8        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(network.o)
+                0x0000000000003eb8                sceNetSend
+
+.bss.g_firmware
+                0x0000000000003ec0        0x2
+ .bss.g_firmware
+                0x0000000000003ec0        0x2 ../ps4-payload-sdk/libPS4/libPS4.a(payload_utils.o)
+                0x0000000000003ec0                g_firmware
+
+.bss.sceSystemServiceLaunchWebBrowser
+                0x0000000000003ec8        0x8
+ .bss.sceSystemServiceLaunchWebBrowser
+                0x0000000000003ec8        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(sysutil.o)
+                0x0000000000003ec8                sceSystemServiceLaunchWebBrowser
+
+.bss.sceSysUtilSendSystemNotificationWithText
+                0x0000000000003ed0        0x8
+ .bss.sceSysUtilSendSystemNotificationWithText
+                0x0000000000003ed0        0x8 ../ps4-payload-sdk/libPS4/libPS4.a(sysutil.o)
+                0x0000000000003ed0                sceSysUtilSendSystemNotificationWithText
+
+.bss.libSceSystemService
+                0x0000000000003ed8        0x4
+ .bss.libSceSystemService
+                0x0000000000003ed8        0x4 ../ps4-payload-sdk/libPS4/libPS4.a(sysutil.o)
+                0x0000000000003ed8                libSceSystemService
+
+.bss.sysUtilHandle
+                0x0000000000003edc        0x4
+ .bss.sysUtilHandle
+                0x0000000000003edc        0x4 ../ps4-payload-sdk/libPS4/libPS4.a(sysutil.o)
+                0x0000000000003edc                sysUtilHandle
+
+/DISCARD/
+ *(.comment)
+ *(.note.GNU-stack)
+ *(.eh_frame)
+ *(.interp)
+LOAD ../ps4-payload-sdk/libPS4/libPS4.a
+OUTPUT(temp.t elf64-x86-64)

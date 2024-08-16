@@ -31,6 +31,9 @@
 #define sys_dynlib_dlsym_patch1         0x0009547B
 #define sys_dynlib_dlsym_patch2         0x002F2C20
 
+// patch sys_mmap to allow rwx mappings
+#define sys_mmap_patch                  0x001D2336
+
 // disable some check for mmap
 #define vm_map_protect_check            0x00264C08
 

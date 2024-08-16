@@ -20,16 +20,19 @@
 #define debug_menu_error_patch1         0X004E6D48
 #define debug_menu_error_patch2         0X004E802F
 
-// allow sys_dynlib_dlsym in all processes
-#define sys_dynlib_dlsym_patch1         0X0023B34F
-#define sys_dynlib_dlsym_patch2         0X00221810
-
 // disable signature check
 #define disable_signature_check_patch   0X00686580
 
 // enable debug RIFs
 #define enable_debug_rifs_patch1        0X0064E3F0
 #define enable_debug_rifs_patch2        0X0064E420
+
+// allow sys_dynlib_dlsym in all processes
+#define sys_dynlib_dlsym_patch1         0X0023B34F
+#define sys_dynlib_dlsym_patch2         0X00221810
+
+// patch sys_mmap to allow rwx mappings
+#define sys_mmap_patch                  0x001662DA
 
 // disable some check for mmap
 #define vm_map_protect_check            0x00080B8B

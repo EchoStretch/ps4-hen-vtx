@@ -3,6 +3,10 @@
 #include "defines.h"
 #include "offsets.h"
 
+#define DEBUG_SOCKET
+#define DEBUG_IP "10.0.0.136"
+#define DEBUG_PORT 9023
+
 #define PS4_UPDATE_FULL_PATH "/update/PS4UPDATE.PUP"
 #define PS4_UPDATE_TEMP_PATH "/update/PS4UPDATE.PUP.net.temp"
 
@@ -72,6 +76,11 @@ int install_payload(struct thread *td, struct install_payload_args* args)
 	kmem[1] = 0xC0;
 	kmem[2] = 0xC3;
 
+	// Patch sys_mmap: Allow RWX (read-write-execute) mapping
+	kmem = (uint8_t *)&kernel_base[sys_mmap_patch];
+	kmem[0] = 0x37;
+	kmem[3] = 0x37;
+
 	// Enable *all* debugging logs (in vprintf)
 	// Patch by: SiSTRo
 	kmem = (uint8_t *)&kernel_base[enable_debug_log_patch];
@@ -109,11 +118,17 @@ int install_payload(struct thread *td, struct install_payload_args* args)
 
 static inline void patch_update(void)
 {
-	unlink(PS4_UPDATE_FULL_PATH);
-	unlink(PS4_UPDATE_TEMP_PATH);
-
-	mkdir(PS4_UPDATE_FULL_PATH, 0777);
-	mkdir(PS4_UPDATE_TEMP_PATH, 0777);
+  unlink(PS4_UPDATE_FULL_PATH);
+  rmdir(PS4_UPDATE_FULL_PATH);
+  if (mkdir(PS4_UPDATE_FULL_PATH, 0777) != 0) {
+    printf_debug("Failed to create /update/PS4UPDATE.PUP.");
+  }
+	
+  unlink(PS4_UPDATE_TEMP_PATH);
+  rmdir(PS4_UPDATE_TEMP_PATH);
+  if (mkdir(PS4_UPDATE_TEMP_PATH, 0777) != 0) {
+    printf_debug("Failed to create /update/PS4UPDATE.PUP.net.temp.");
+  }
 }
 
 int _main(struct thread *td)
@@ -124,11 +139,6 @@ int _main(struct thread *td)
 	initKernel();
 	initLibc();
 
-#ifdef DEBUG_SOCKET
-  initNetwork();
-  DEBUG_SOCK = SckConnect(DEBUG_IP, DEBUG_PORT);
-#endif
-	
         printf_debug("Starting...\n");
 
 	struct payload_info payload_info;
@@ -146,14 +156,9 @@ int _main(struct thread *td)
 
         char fw_version[6] = {0};
         get_firmware_string(fw_version);
-	printf_notification("Welcome To OG HEN v"VERSION"\nPS4 Firmware %s", fw_version);
+	printf_notification("Welcome To PS4HEN v"VERSION"\nPS4 Firmware %s", fw_version);
 
 	printf_debug("Done.\n");
-
-#ifdef DEBUG_SOCKET
-  printf_debug("Closing socket...\n");
-  SckClose(DEBUG_SOCK);
-#endif
 
 	return result;
 }
