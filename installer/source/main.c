@@ -3,10 +3,6 @@
 #include "defines.h"
 #include "offsets.h"
 
-#define DEBUG_SOCKET
-#define DEBUG_IP "10.0.0.136"
-#define DEBUG_PORT 9023
-
 #define PS4_UPDATE_FULL_PATH "/update/PS4UPDATE.PUP"
 #define PS4_UPDATE_TEMP_PATH "/update/PS4UPDATE.PUP.net.temp"
 

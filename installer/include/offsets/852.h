@@ -28,7 +28,7 @@
 #define enable_debug_rifs_patch2        0x0064DC90
 
 // allow sys_dynlib_dlsym in all processes
-#define sys_dynlib_dlsym_patch          0x00017C2F
+#define sys_dynlib_dlsym_patch1         0x00017C2F
 #define sys_dynlib_dlsym_patch2         0x003AD040
 
 // patch sys_mmap to allow rwx mappings
