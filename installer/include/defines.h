@@ -4,10 +4,6 @@
 
 #define VERSION "2.1.5"
 
-//#define DEBUG_SOCKET
-#define DEBUG_IP "192.168.2.2"
-#define DEBUG_PORT 9023
-
 struct payload_info {
 	uint8_t* buffer;
 	size_t size;

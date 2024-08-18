@@ -34,6 +34,9 @@
 // patch sys_mmap to allow rwx mappings
 #define sys_mmap_patch                  0x0016632A
 
+// Patch setuid: Don't run kernel exploit more than once/privilege escalation
+#define enable_setuid_patch             0x000019FF
+
 // Enable RWX (kmem_alloc) mapping
 #define kmem_alloc_patch1               0x0037BF3C
 #define kmem_alloc_patch2               0x0037BF44
