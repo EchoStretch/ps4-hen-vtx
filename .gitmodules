@@ -1,3 +1,6 @@
 [submodule "ps4-payload-sdk"]
 	path = ps4-payload-sdk
 	url = https://github.com/EchoStretch/ps4-payload-sdk.git
+[submodule "PPPwn"]
+	path = PPPwn
+	url = https://github.com/EchoStretch/PPPwn.git
