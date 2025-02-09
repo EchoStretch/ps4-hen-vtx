@@ -11,9 +11,9 @@
 #elif FW==702
 #include "offsets/700-702.h"
 #elif FW==750
-#include "offsets/750-751.h"
+#include "offsets/750.h"
 #elif FW==751
-#include "offsets/750-751.h"
+#include "offsets/751.h"
 #elif FW==755
 #include "offsets/755.h"
 #elif FW==800
