@@ -66,7 +66,7 @@
 #define sceSblAuthMgrIsLoadable2_hook                               0x0063A94E
 #define sceSblAuthMgrVerifyHeader_hook1                             0x0063B0E6
 #define sceSblAuthMgrVerifyHeader_hook2                             0x0063BDC9
-#define sceSblAuthMgrSmLoadSelfSegment__sceSblServiceMailbox_hook   0x0063FBBD
+#define sceSblAuthMgrSmLoadSelfSegment__sceSblServiceMailbox_hook   0x0063FBDD
 #define sceSblAuthMgrSmLoadSelfBlock__sceSblServiceMailbox_hook     0x00640818
 
 // Fpkg hooks
