@@ -80,7 +80,7 @@
 // has a check to see if child_tid/parent_tid is in kernel memory, and it in so patch it
 // Patch by: JOGolden
 #define enable_suword_patch1            0x00473232
-#define enable_suword_patch2            0x004EC908
+#define enable_suword_patch2            0x00473241
 
 // Enable *all* debugging logs (in vprintf)
 // Patch by: SiSTRo
