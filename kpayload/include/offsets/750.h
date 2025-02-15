@@ -92,7 +92,7 @@
 // SceShellCore patches - call sceKernelIsGenuineCEX
 #define sceKernelIsGenuineCEX_patch1    0x00168A90
 #define sceKernelIsGenuineCEX_patch2    0x007FBF00
-#define sceKernelIsGenuineCEX_patch3    0x0084AF42
+#define sceKernelIsGenuineCEX_patch3    0x0084AFB2
 #define sceKernelIsGenuineCEX_patch4    0x009D3150
 
 // SceShellCore patches - call nidf_libSceDipsw
