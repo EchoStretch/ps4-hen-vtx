@@ -3,10 +3,10 @@ name: PS4 HEN Payload
 on:
   push:
     branches:
-      - Multi-PPPwn-HEN
+      - Multi-HEN
   pull_request:
     branches:
-      - Multi-PPPwn-HEN
+      - Multi-HEN
 
 permissions:
   contents: write
@@ -33,15 +33,15 @@ jobs:
          
       - name: Build and package binaries
         run: |
-          VERSIONS="700 701 702 750 751 755 800 801 803 850 852 900 903 904 950 951 960 1000 1001 1050 1070 1071 1100"
+          VERSIONS="700 701 702 750 751 755 800 801 803 850 852 900 903 904 950 951 960 1000 1001 1050 1070 1071 1100 1102 1150 1152"
           for VERSION in $VERSIONS; do
             ./build.sh $VERSION
           done
-          zip ps4-hen-PPPwn-vtx.zip ps4-hen-*.bin stage2_*.bin
+          zip ps4-hen-vtx.zip ps4-hen-*.bin
 
-      - name: Release for branch Multi-PPPwn-HEN
-        if: github.event_name == 'push' && github.ref == 'refs/heads/Multi-PPPwn-HEN'
+      - name: Release for branch Multi-HEN
+        if: github.event_name == 'push' && github.ref == 'refs/heads/Multi-HEN'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release create PPPwn-1.0${{ github.run_number }} ps4-hen-PPPwn-vtx.zip --target ${{ github.sha }} -t PPPwn-1.0${{ github.run_number }}
+          gh release create HEN-1.0${{ github.run_number }} ps4-hen-vtx.zip --target ${{ github.sha }} -t HEN-1.0${{ github.run_number }}

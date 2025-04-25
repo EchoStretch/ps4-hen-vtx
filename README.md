@@ -1,7 +1,7 @@
 # PS4HEN v2.1.5
 
 ## Features
-- Current Supports 7.00 - 11.00
+- Current Supports 7.00 - 11.52
 - Homebrew Enabler
 - Jailbreak
 - Sandbox Escape
@@ -32,7 +32,7 @@ Compile the payloads:
 ./build.sh 900
 ```
 
-For other firmwares, e.g. FW 11.00, `./build.sh 1100`.
+For other firmwares, e.g. FW 11.52, `./build.sh 1152`.
 
 ## Contributors
 Massive credits to the following:

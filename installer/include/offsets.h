@@ -50,4 +50,10 @@
 #include "offsets/1050-1071.h"
 #elif FW==1100
 #include "offsets/1100.h"
+#elif FW==1102
+#include "offsets/1102.h"
+#elif FW==1150
+#include "offsets/1150-1152.h"
+#elif FW==1152
+#include "offsets/1150-1152.h"
 #endif
