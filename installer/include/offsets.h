@@ -56,4 +56,8 @@
 #include "offsets/1150-1152.h"
 #elif FW==1152
 #include "offsets/1150-1152.h"
+#elif FW==1200
+#include "offsets/1200-1202.h"
+#elif FW==1202
+#include "offsets/1200-1202.h"
 #endif
