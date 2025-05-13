@@ -11,19 +11,47 @@ extern unsigned kpayload_size;
 
 int install_payload(struct thread *td, struct install_payload_args* args)
 {
-        UNUSED(td);
+    	struct ucred* cred = td -> td_proc -> p_ucred;
+    	struct filedesc* fd = td -> td_proc -> p_fd;
+
 	uint8_t* kernel_base = (uint8_t*)(__readmsr(0xC0000082) - XFAST_SYSCALL_addr);
+	uint8_t* kernel_ptr = (uint8_t*)kernel_base;
+	void** got_prison0 = (void**)&kernel_ptr[PRISON0_addr];
+	void** got_rootvnode = (void**)&kernel_ptr[ROOTVNODE_addr];
 
 	void (*pmap_protect)(void * pmap, uint64_t sva, uint64_t eva, uint8_t pr) = (void *)(kernel_base + pmap_protect_addr);
 	void *kernel_pmap_store = (void *)(kernel_base + PMAP_STORE_addr);
 
-    	uint8_t* payload_data = args->payload_info->buffer;
-    	size_t payload_size = args->payload_info->size;
+	uint8_t* payload_data = args->payload_info->buffer;
+	size_t payload_size = args->payload_info->size;
 	struct payload_header* payload_header = (struct payload_header*)payload_data;
 	uint8_t* payload_buffer = (uint8_t*)&kernel_base[DT_HASH_SEGMENT_addr];
 
 	if (!payload_data || payload_size < sizeof(payload_header) || payload_header->signature != 0x5041594C4F414458ull)
 		return -1;
+
+	cred->cr_uid = 0;
+	cred->cr_ruid = 0;
+	cred->cr_rgid = 0;
+	cred->cr_groups[0] = 0;
+
+	cred->cr_prison = *got_prison0;
+	fd->fd_rdir = fd->fd_jdir = *got_rootvnode;
+
+	// escalate ucred privs, needed for access to the filesystem ie* mounting & decrypting files
+	void *td_ucred = *(void **)(((char *)td) + 304); // p_ucred == td_ucred
+
+	// sceSblACMgrIsSystemUcred
+	uint64_t *sonyCred = (uint64_t *)(((char *)td_ucred) + 96);
+	*sonyCred = 0xffffffffffffffff;
+
+	// sceSblACMgrGetDeviceAccessType
+	uint64_t *sceProcType = (uint64_t *)(((char *)td_ucred) + 88);
+	*sceProcType = 0x3801000000000013; // Max access
+
+	// sceSblACMgrHasSceProcessCapability
+	uint64_t *sceProcCap = (uint64_t *)(((char *)td_ucred) + 104);
+	*sceProcCap = 0xffffffffffffffff; // Sce Process
 
 	// Use "kmem" for all patches
         uint8_t *kmem;
