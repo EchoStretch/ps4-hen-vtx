@@ -61,6 +61,15 @@
 #define enable_ptrace_patch1            0x00424E9D
 #define enable_ptrace_patch2            0x00425371
 
+//patch sceSblACMgrIsAllowedSystemLevelDebugging
+#define system_level_debugging_patch    0x001B00C0
+
+// patch ASLR, thanks 2much4u
+#define disable_aslr_patch              0x00345E04
+
+// Change directory depth limit from 9 to 64
+#define depth_limit_patch               0x000DAA46
+
 // setlogin patch (for autolaunch check)
 #define enable_setlogin_patch           0x0008EE7C
 
