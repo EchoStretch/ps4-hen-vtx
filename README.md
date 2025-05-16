@@ -1,7 +1,7 @@
 # PS4HEN v2.1.5
 
 ## Features
-- Current Supports 7.00 - 11.00
+- Current Supports 5.05 - 12.02 (PPPwn: 7.00 - 11.00)
 - Homebrew Enabler
 - Jailbreak
 - Sandbox Escape
