@@ -1,7 +1,7 @@
 # PS4HEN v2.1.5
 
 ## Features
-- Current Supports 7.00 - 11.52
+- Current Supports 7.00 - 12.02
 - Homebrew Enabler
 - Jailbreak
 - Sandbox Escape
@@ -17,6 +17,7 @@
 - UART Enabler
 - Never Disable Screenshot
 - Remote Play Enabler
+- Disable ASLR
 
 ## Usage
 
@@ -32,7 +33,7 @@ Compile the payloads:
 ./build.sh 900
 ```
 
-For other firmwares, e.g. FW 11.52, `./build.sh 1152`.
+For other firmwares, e.g. FW 12.02, `./build.sh 1202`.
 
 ## Contributors
 Massive credits to the following:
