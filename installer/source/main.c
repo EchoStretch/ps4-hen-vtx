@@ -11,9 +11,11 @@ extern unsigned kpayload_size;
 
 int install_payload(struct thread *td, struct install_payload_args* args)
 {
-        UNUSED(td);
-    	struct ucred* cred = td -> td_proc -> p_ucred;
-    	struct filedesc* fd = td -> td_proc -> p_fd;
+	struct ucred* cred;
+	struct filedesc* fd;
+
+	fd = td->td_proc->p_fd;
+	cred = td->td_proc->p_ucred;
 
 	uint8_t* kernel_base = (uint8_t*)(__readmsr(0xC0000082) - XFAST_SYSCALL_addr);
 	uint8_t* kernel_ptr = (uint8_t*)kernel_base;
@@ -311,15 +313,14 @@ static inline void patch_update(void)
 
 int _main(struct thread *td)
  {
-    UNUSED(td);
 	char fw_version[6] = {0};
-    get_firmware_string(fw_version);
+    	get_firmware_string(fw_version);
 	int result;
 
 	initKernel();
 	initLibc();
 
-    printf_debug("Starting...\n");
+    	printf_debug("Starting...\n");
 
 	struct payload_info payload_info;
 	payload_info.buffer = (uint8_t *)kpayload;
