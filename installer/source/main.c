@@ -105,32 +105,40 @@ int install_payload(struct thread *td, struct install_payload_args* args)
 	kmem = (uint8_t *)&kernel_base[enable_copyin_patch1];
 	kmem[0] = 0x90;
 	kmem[1] = 0x90;
-
+	
+	if (FW != 505)
+	{
 	kmem = (uint8_t *)&kernel_base[enable_copyin_patch2];
 	kmem[0] = 0x90;
 	kmem[1] = 0x90;
 	kmem[2] = 0x90;
-
+	}
 	// copyout
 	kmem = (uint8_t *)&kernel_base[enable_copyout_patch1];
 	kmem[0] = 0x90;
 	kmem[1] = 0x90;
 
+	if (FW != 505)
+	{
 	kmem = (uint8_t *)&kernel_base[enable_copyout_patch2];
 	kmem[0] = 0x90;
 	kmem[1] = 0x90;
 	kmem[2] = 0x90;
-
+	}
+	
 	// Patch copyinstr
 	kmem = (uint8_t *)&kernel_base[enable_copyinstr_patch1];
 	kmem[0] = 0x90;
 	kmem[1] = 0x90;
-
+	
+	if (FW != 505)
+	{
 	kmem = (uint8_t *)&kernel_base[enable_copyinstr_patch2];
 	kmem[0] = 0x90;
 	kmem[1] = 0x90;
 	kmem[2] = 0x90;
-
+	}
+	
 	kmem = (uint8_t *)&kernel_base[enable_copyinstr_patch3];
 	kmem[0] = 0x90;
 	kmem[1] = 0x90;
