@@ -105,41 +105,31 @@ int install_payload(struct thread *td, struct install_payload_args* args)
 	kmem = (uint8_t *)&kernel_base[enable_copyin_patch1];
 	kmem[0] = 0x90;
 	kmem[1] = 0x90;
-	
-	if (FW != 505)
-	{
+
 	kmem = (uint8_t *)&kernel_base[enable_copyin_patch2];
 	kmem[0] = 0x90;
 	kmem[1] = 0x90;
 	kmem[2] = 0x90;
-	}
-	
+
 	// copyout
 	kmem = (uint8_t *)&kernel_base[enable_copyout_patch1];
 	kmem[0] = 0x90;
 	kmem[1] = 0x90;
 
-	if (FW != 505)
-	{
 	kmem = (uint8_t *)&kernel_base[enable_copyout_patch2];
 	kmem[0] = 0x90;
 	kmem[1] = 0x90;
 	kmem[2] = 0x90;
-	}
-	
+
 	// Patch copyinstr
 	kmem = (uint8_t *)&kernel_base[enable_copyinstr_patch1];
 	kmem[0] = 0x90;
 	kmem[1] = 0x90;
-	
-	if (FW != 505)
-	{
+
 	kmem = (uint8_t *)&kernel_base[enable_copyinstr_patch2];
 	kmem[0] = 0x90;
 	kmem[1] = 0x90;
 	kmem[2] = 0x90;
-	}
-	
 
 	kmem = (uint8_t *)&kernel_base[enable_copyinstr_patch3];
 	kmem[0] = 0x90;
@@ -167,23 +157,15 @@ int install_payload(struct thread *td, struct install_payload_args* args)
 	kmem[3] = 0x00;
 	kmem[4] = 0x00;
 
-    	//patch sceSblACMgrIsAllowedSystemLevelDebugging
-	kmem = (uint8_t *)&kernel_base[system_level_debugging_patch];
-	kmem[0] = 0x31;
-	kmem[1] = 0xC0;
-	kmem[2] = 0xFF;
-	kmem[3] = 0xC0;
-	kmem[4] = 0xC3;
-
    	// patch ASLR, thanks 2much4u
    	kmem = (uint8_t *)&kernel_base[disable_aslr_patch];
    	kmem[0] = 0x90;
    	kmem[1] = 0x90;
 
-        // Change directory depth limit from 9 to 64
+    // Change directory depth limit from 9 to 64
 	kmem = (uint8_t *)&kernel_base[depth_limit_patch];
 	kmem[0] = 0x40;
-
+	
 	// setlogin patch (for autolaunch check)
 	kmem = (uint8_t *)&kernel_base[enable_setlogin_patch];
 	kmem[0] = 0x48;
@@ -313,14 +295,13 @@ static inline void patch_update(void)
 
 int _main(struct thread *td)
  {
-	char fw_version[6] = {0};
-    	get_firmware_string(fw_version);
+
 	int result;
 
 	initKernel();
 	initLibc();
 
-    	printf_debug("Starting...\n");
+    printf_debug("Starting...\n");
 
 	struct payload_info payload_info;
 	payload_info.buffer = (uint8_t *)kpayload;
@@ -335,6 +316,8 @@ int _main(struct thread *td)
 	patch_update();
 	initSysUtil();
 
+    char fw_version[6] = {0};
+    get_firmware_string(fw_version);
 	printf_notification("Welcome To PS4HEN v"VERSION"\nPS4 Firmware %s", fw_version);
 
 	printf_debug("Done.\n");
