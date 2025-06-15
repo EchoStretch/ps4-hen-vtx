@@ -9,7 +9,7 @@
 #define PRISON0_addr                    0x0111F830
 #define ROOTVNODE_addr                  0x02116640
 #define PMAP_STORE_addr                 0x02162A88
-#define DT_HASH_SEGMENT_addr            0x00CEAC00
+#define DT_HASH_SEGMENT_addr            0x00CEB1A8
 
 // Functions
 #define pmap_protect_addr               0x00116CD0
