@@ -7,7 +7,7 @@
 #define XFAST_SYSCALL_addr               0x000001C0
 #define M_TEMP_addr                      0x01520D00
 #define MINI_SYSCORE_SELF_BINARY_addr    0x0153D6C8
-#define ALLPROC_addr                     0x01B284D8
+#define ALLPROC_addr                     0x01B28538
 #define SBL_DRIVER_MAPPED_PAGES_addr     0x02647350
 #define SBL_PFS_SX_addr                  0x0265C080
 #define SBL_KEYMGR_KEY_SLOTS_addr        0x02668040
