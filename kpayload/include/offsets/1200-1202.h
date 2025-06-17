@@ -31,7 +31,7 @@
 #define memset_addr                      0x001FA140
 #define strlen_addr                      0x0036AB30
 #define printf_addr                      0x002E03E0
-#define eventhandler_register_addr       0x00224180
+#define eventhandler_register_addr       0x00224110
 
 // Fself
 #define sceSblACMgrGetPathId_addr        0x003B2D80
