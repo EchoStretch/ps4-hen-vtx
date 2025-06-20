@@ -5,8 +5,7 @@ on:
     branches:
       - Multi-HEN
   pull_request:
-    branches:
-      - Multi-HEN
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -14,6 +13,8 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      zip: ps4-hen-vtx
     steps:
       - name: Checkout repository
         uses: actions/checkout@main
@@ -37,7 +38,14 @@ jobs:
           for VERSION in $VERSIONS; do
             ./build.sh $VERSION
           done
-          zip ps4-hen-vtx.zip ps4-hen-*.bin
+          zip ${{ env.zip }}.zip ps4-hen-*.bin
+
+      - name: Upload payload
+        if: github.event_name != 'push' && github.ref != 'refs/heads/Multi-HEN'
+        uses: actions/upload-artifact@main
+        with:
+          name: ${{ env.zip }}
+          path: ps4-hen-*.bin
 
       - name: Release for branch Multi-HEN
         if: github.event_name == 'push' && github.ref == 'refs/heads/Multi-HEN'
