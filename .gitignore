@@ -3,3 +3,6 @@ tool/bin2js
 *.bin
 *.js
 *.map
+**/*.o
+**/*.bin
+**/*.map
