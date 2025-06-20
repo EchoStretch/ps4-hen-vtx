@@ -78,6 +78,9 @@ void (*vm_map_unlock_read)(struct vm_map *map) PAYLOAD_BSS;
 int (*vm_map_lookup_entry)(struct vm_map *map, uint64_t address, struct vm_map_entry **entries) PAYLOAD_BSS;
 int (*proc_rwmem)(struct proc *p, struct uio *uio) PAYLOAD_BSS;
 
+int (*sys_dynlib_load_prx)(void *param_1, void *param_2) PAYLOAD_BSS;
+int (*sys_dynlib_dlsym)(void *param_1, void *param_2) PAYLOAD_BSS;
+
 // initialization, etc
 extern void install_fself_hooks(void)         PAYLOAD_CODE;
 extern void install_fpkg_hooks(void)          PAYLOAD_CODE;
@@ -88,6 +91,219 @@ extern void shellcore_patch(void)             PAYLOAD_CODE;
  
 
 #define resolve(name) name = (void *)(kernbase + name##_addr)
+
+PAYLOAD_CODE int my_hex_to_int(char c)
+{
+	if (c >= '0' && c <= '9')
+	{
+		return c - '0';
+	}
+	if (c >= 'A' && c <= 'F')
+	{
+		return c - 'A' + 10;
+	}
+	if (c >= 'a' && c <= 'f')
+	{
+		return c - 'a' + 10;
+	}
+	return -1;
+}
+
+PAYLOAD_CODE int my_is_space(char c)
+{
+	return (c == ' ' || c == '\t' || c == '\n' || c == '\r');
+}
+
+PAYLOAD_CODE int my_strlen(const char *str)
+{
+	int len = 0;
+	while (str[len])
+	{
+		len++;
+	}
+	return len;
+}
+
+PAYLOAD_CODE uintptr_t pattern_scan(const uintptr_t base, const uintptr_t base_size, const char *pattern)
+{
+	if (!base || !base_size || !pattern)
+	{
+		return 0;
+	}
+
+	const uint8_t *memory = (const uint8_t *)base;
+	const int pattern_len = my_strlen(pattern);
+
+	int byte_count = 0;
+	for (int i = 0; i < pattern_len; i++)
+	{
+		if (!my_is_space(pattern[i]))
+		{
+			if (pattern[i] == '?')
+			{
+				byte_count++;
+				if (i + 1 < pattern_len && pattern[i + 1] == '?')
+					i++;
+			}
+			else if (my_hex_to_int(pattern[i]) >= 0)
+			{
+				if (i + 1 < pattern_len && my_hex_to_int(pattern[i + 1]) >= 0)
+					i++;
+				byte_count++;
+			}
+		}
+	}
+
+	if (byte_count == 0 || (uintptr_t)byte_count > base_size)
+		return 0;
+
+	for (uintptr_t mem_offset = 0; mem_offset <= base_size - byte_count; mem_offset++)
+	{
+		int pattern_pos = 0;
+		int byte_pos = 0;
+		int match = 1;
+
+		while (pattern_pos < pattern_len && byte_pos < byte_count && match)
+		{
+			while (pattern_pos < pattern_len && my_is_space(pattern[pattern_pos]))
+			{
+				pattern_pos++;
+			}
+
+			if (pattern_pos >= pattern_len)
+				break;
+
+			if (pattern[pattern_pos] == '?')
+			{
+				pattern_pos++;
+				if (pattern_pos < pattern_len && pattern[pattern_pos] == '?')
+				{
+					pattern_pos++;
+				}
+				byte_pos++;
+			}
+			else if (my_hex_to_int(pattern[pattern_pos]) >= 0)
+			{
+				int high = my_hex_to_int(pattern[pattern_pos]);
+				int low = 0;
+
+				pattern_pos++;
+				if (pattern_pos < pattern_len && my_hex_to_int(pattern[pattern_pos]) >= 0)
+				{
+					low = my_hex_to_int(pattern[pattern_pos]);
+					pattern_pos++;
+				}
+				else
+				{
+					low = high;
+					high = 0;
+				}
+
+				uint8_t expected_byte = (uint8_t)((high << 4) | low);
+				if (memory[mem_offset + byte_pos] != expected_byte)
+				{
+					match = 0;
+				}
+				byte_pos++;
+			}
+			else
+			{
+				pattern_pos++;
+			}
+		}
+
+		if (match && byte_pos == byte_count)
+		{
+			return base + mem_offset;
+		}
+	}
+
+	return 0;
+}
+
+PAYLOAD_CODE uintptr_t pattern_scan_offset(const uintptr_t base, const uintptr_t base_size, const char *pattern, const size_t ret_offset)
+{
+	const uintptr_t r = pattern_scan(base, base_size, pattern);
+	return r ? r + ret_offset : 0;
+}
+
+static PAYLOAD_CODE void get_memory_dump(uintptr_t addr, void *out, uint64_t outsz)
+{
+	uint8_t *pout = (uint8_t *)out;
+	uint8_t *paddr = (uint8_t *)addr;
+	for (uint64_t o = 0; o < outsz; o++)
+	{
+		pout[o] = paddr[o];
+	}
+}
+
+static PAYLOAD_CODE uint64_t get_kernel_size(uint64_t kernel_base)
+{
+	if (!kernel_base)
+	{
+		return 0;
+	}
+	uint16_t elf_header_size;		// ELF header size
+	uint16_t elf_header_entry_size; // ELF header entry size
+	uint16_t num_of_elf_entries;	// Number of entries in the ELF header
+
+	get_memory_dump(kernel_base + 0x34, &elf_header_size, sizeof(uint16_t));
+	get_memory_dump(kernel_base + 0x34 + sizeof(uint16_t), &elf_header_entry_size, sizeof(uint16_t));
+	get_memory_dump(kernel_base + 0x34 + (sizeof(uint16_t) * 2), &num_of_elf_entries, sizeof(uint16_t));
+
+	// printf_debug("elf_header_size: %u bytes\n", elf_header_size);
+	// printf_debug("elf_header_entry_size: %u bytes\n", elf_header_entry_size);
+	// printf_debug("num_of_elf_entries: %u\n", num_of_elf_entries);
+
+	uint64_t max = 0;
+	for (int i = 0; i < num_of_elf_entries; i++)
+	{
+		uint64_t temp_memsz;
+		uint64_t temp_vaddr;
+		uint64_t temp_align;
+		uint64_t temp_max;
+
+		uint64_t memsz_offset = elf_header_size + (i * elf_header_entry_size) + 0x28;
+		uint64_t vaddr_offset = elf_header_size + (i * elf_header_entry_size) + 0x10;
+		uint64_t align_offset = elf_header_size + (i * elf_header_entry_size) + 0x30;
+		get_memory_dump(kernel_base + memsz_offset, &temp_memsz, sizeof(uint64_t));
+		get_memory_dump(kernel_base + vaddr_offset, &temp_vaddr, sizeof(uint64_t));
+		get_memory_dump(kernel_base + align_offset, &temp_align, sizeof(uint64_t));
+
+		temp_vaddr -= kernel_base;
+		temp_vaddr += 0xFFFFFFFF82200000;
+
+		temp_max = (temp_vaddr + temp_memsz + (temp_align - 1)) & ~(temp_align - 1);
+
+		if (temp_max > max)
+		{
+			max = temp_max;
+		}
+	}
+
+	return max - 0xFFFFFFFF82200000;
+}
+
+PAYLOAD_CODE static void resolve_patterns()
+{
+	uint64_t flags, cr0;
+	cr0 = readCr0();
+	writeCr0(cr0 & ~X86_CR0_WP);
+	flags = intr_disable();
+
+	const uint64_t kernbase = getkernbase();
+	const uint64_t kernsize = get_kernel_size(kernbase);
+
+	if (kernbase && kernsize)
+	{
+		// only stack size difference
+		sys_dynlib_load_prx = (void *)pattern_scan(kernbase, kernsize, "55 48 89 e5 41 57 41 56 41 55 41 54 53 48 81 ec 88 05 00 00 48 8d 1d ? ? ? ? 48 8b 03 48 89 45 d0 48 8b 47 08 4c 8b b8 40 03 00 00");
+		sys_dynlib_dlsym = (void *)pattern_scan(kernbase, kernsize, "55 48 89 e5 41 57 41 56 41 55 41 54 53 48 81 ec d8 0a 00 00 48 8d 1d ? ? ? ? 48 8b 03 48 89 45 d0 48 8b 47 08 4c 8b a0 40 03 00 00");
+	}
+
+	intr_restore(flags);
+	writeCr0(cr0);
+}
 
 PAYLOAD_CODE void resolve_kdlsym()
 {
@@ -153,6 +369,7 @@ PAYLOAD_CODE void resolve_kdlsym()
 PAYLOAD_CODE void my_entrypoint()
 {
 	resolve_kdlsym();
+	resolve_patterns();
 	install_fself_hooks();
 	install_fpkg_hooks();
 	install_patches();

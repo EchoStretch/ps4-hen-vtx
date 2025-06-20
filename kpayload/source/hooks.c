@@ -18,6 +18,10 @@
 extern void *(*memset)(void *s, int c, size_t n)PAYLOAD_BSS;
 extern void *(*memcpy)(void *dst, const void *src, size_t len)PAYLOAD_BSS;
 extern int (*proc_rwmem)(struct proc *p, struct uio *uio) PAYLOAD_BSS;
+extern int (*sys_dynlib_load_prx)(void *param_1, void *param_2) PAYLOAD_BSS;
+extern int (*sys_dynlib_dlsym)(void *param_1, void *param_2) PAYLOAD_BSS;
+extern int (*printf)(const char *fmt, ...) PAYLOAD_BSS;
+extern char *(*strstr)(const char *haystack, const char *needle)PAYLOAD_BSS;
 
 extern struct vmspace *(*vmspace_acquire_ref)(struct proc *p)PAYLOAD_BSS;
 extern void (*vmspace_free)(struct vmspace *vm) PAYLOAD_BSS;
@@ -275,6 +279,63 @@ finish:
     return r;
 }
 
+struct dynlib_load_prx_args
+{
+    const char *prx_path;
+    int flags;
+    int *handle_out;
+    uint64_t unk;
+};
+
+struct dynlib_dlsym_args
+{
+    int module;
+    const char *symbol;
+    uintptr_t *symbol_ptr;
+};
+
+PAYLOAD_CODE static int dlsym_wrap(struct thread *td, int module, const char *sym, uintptr_t *out)
+{
+    struct dynlib_dlsym_args dlsym_args = {};
+    dlsym_args.module = module;
+    dlsym_args.symbol = sym;
+    dlsym_args.symbol_ptr = out;
+    return sys_dynlib_dlsym(td, &dlsym_args);
+}
+
+PAYLOAD_CODE int sys_dynlib_load_prx_hook(struct thread *td, struct dynlib_load_prx_args *args)
+{
+    int r = sys_dynlib_load_prx(td, args);
+    if (strstr(args->prx_path, "/app0/sce_module/libc.prx"))
+    {
+        const int handle_out = args->handle_out ? *args->handle_out : 0;
+        const char *p = args->prx_path ? args->prx_path : "";
+        struct dynlib_load_prx_args my_args = {};
+        int handle = 0;
+        my_args.prx_path = "/data/plugin_bootloader.prx";
+        my_args.handle_out = &handle;
+        sys_dynlib_load_prx(td, &my_args);
+        uintptr_t init_env_ptr = 0;
+        dlsym_wrap(td, handle_out, "_init_env", &init_env_ptr);
+        uintptr_t plugin_load_ptr = 0;
+        dlsym_wrap(td, handle, "plugin_load", &plugin_load_ptr);
+        if (init_env_ptr && plugin_load_ptr)
+        {
+            static uint8_t jmp[] = {
+                0xff,
+                0x25,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+            };
+            proc_rw_mem(td->td_proc, (void *)init_env_ptr, sizeof(jmp), jmp, 0, 1);
+            proc_rw_mem(td->td_proc, (void *)(init_env_ptr + sizeof(jmp)), sizeof(plugin_load_ptr), &plugin_load_ptr, 0, 1);
+        }
+    }
+    return r;
+}
+
 PAYLOAD_CODE void install_syscall_hooks()
 {
     uint64_t flags, cr0;
@@ -287,6 +348,12 @@ PAYLOAD_CODE void install_syscall_hooks()
     install_syscall(107, sys_proc_list);
     install_syscall(108, sys_proc_rw);
     install_syscall(109, sys_proc_cmd);
+    printf("sys_dynlib_load_prx %p\n", sys_dynlib_load_prx);
+    printf("sys_dynlib_dlsym %p\n", sys_dynlib_dlsym);
+    if (sys_dynlib_load_prx && sys_dynlib_dlsym)
+    {
+        install_syscall(594, sys_dynlib_load_prx_hook);
+    }
 
     intr_restore(flags);
     writeCr0(cr0);
