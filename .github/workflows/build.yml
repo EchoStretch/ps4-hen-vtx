@@ -13,6 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       zip: ps4-hen-vtx
+      zip_glob: ps4-hen-*.bin
     steps:
       - name: Checkout repository
         uses: actions/checkout@main
@@ -37,13 +38,13 @@ jobs:
           for VERSION in $VERSIONS; do
             ./build.sh $VERSION
           done
-          zip ${{ env.zip }}.zip ps4-hen-*.bin
+          zip ${{ env.zip }}.zip ${{ env.zip_glob }}
 
       - name: Upload payload
         uses: actions/upload-artifact@main
         with:
           name: ${{ env.zip }}
-          path: ps4-hen-*.bin
+          path: ${{ env.zip_glob }}
 
       - name: Release for branch Multi-HEN
         if: github.event_name == 'push' && github.ref == 'refs/heads/Multi-HEN'
