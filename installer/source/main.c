@@ -318,6 +318,10 @@ static void write_blob(const char* path, const void* blob, const size_t blobsz)
 		write(fd, blob,blobsz);
 		close(fd);
 	}
+	else
+	{
+		printf_notification("Failed to write %s!\nFile descriptor %d", path, fd);
+	}
 }
 
 static void upload_prx_to_disk(void)
