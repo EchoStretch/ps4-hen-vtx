@@ -2,8 +2,6 @@ name: PS4 HEN Payload
 
 on:
   push:
-    branches:
-      - Multi-HEN
   pull_request:
   workflow_dispatch:
 
@@ -42,7 +40,6 @@ jobs:
           zip ${{ env.zip }}.zip ps4-hen-*.bin
 
       - name: Upload payload
-        if: github.event_name != 'push' && github.ref != 'refs/heads/Multi-HEN'
         uses: actions/upload-artifact@main
         with:
           name: ${{ env.zip }}
