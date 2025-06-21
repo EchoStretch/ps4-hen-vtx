@@ -6,3 +6,6 @@ tool/bin2js
 **/*.o
 **/*.bin
 **/*.map
+**/*.inc
+**/*.prx
+**/*.zip
