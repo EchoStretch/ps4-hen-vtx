@@ -9,26 +9,26 @@
 extern char kpayload[];
 extern unsigned kpayload_size;
 
-int install_payload(struct thread *td, struct install_payload_args* args)
+int install_payload(struct thread *td, struct install_payload_args *args)
 {
-	struct ucred* cred;
-	struct filedesc* fd;
+	struct ucred *cred;
+	struct filedesc *fd;
 
 	fd = td->td_proc->p_fd;
 	cred = td->td_proc->p_ucred;
 
-	uint8_t* kernel_base = (uint8_t*)(__readmsr(0xC0000082) - XFAST_SYSCALL_addr);
-	uint8_t* kernel_ptr = (uint8_t*)kernel_base;
-	void** got_prison0 = (void**)&kernel_ptr[PRISON0_addr];
-	void** got_rootvnode = (void**)&kernel_ptr[ROOTVNODE_addr];
+	uint8_t *kernel_base = (uint8_t *)(__readmsr(0xC0000082) - XFAST_SYSCALL_addr);
+	uint8_t *kernel_ptr = (uint8_t *)kernel_base;
+	void **got_prison0 = (void **)&kernel_ptr[PRISON0_addr];
+	void **got_rootvnode = (void **)&kernel_ptr[ROOTVNODE_addr];
 
-	void (*pmap_protect)(void * pmap, uint64_t sva, uint64_t eva, uint8_t pr) = (void *)(kernel_base + pmap_protect_addr);
+	void (*pmap_protect)(void *pmap, uint64_t sva, uint64_t eva, uint8_t pr) = (void *)(kernel_base + pmap_protect_addr);
 	void *kernel_pmap_store = (void *)(kernel_base + PMAP_STORE_addr);
 
-	uint8_t* payload_data = args->payload_info->buffer;
+	uint8_t *payload_data = args->payload_info->buffer;
 	size_t payload_size = args->payload_info->size;
-	struct payload_header* payload_header = (struct payload_header*)payload_data;
-	uint8_t* payload_buffer = (uint8_t*)&kernel_base[DT_HASH_SEGMENT_addr];
+	struct payload_header *payload_header = (struct payload_header *)payload_data;
+	uint8_t *payload_buffer = (uint8_t *)&kernel_base[DT_HASH_SEGMENT_addr];
 
 	if (!payload_data || payload_size < sizeof(payload_header) || payload_header->signature != 0x5041594C4F414458ull)
 		return -1;
@@ -57,7 +57,7 @@ int install_payload(struct thread *td, struct install_payload_args* args)
 	*sceProcCap = 0xffffffffffffffff; // Sce Process
 
 	// Use "kmem" for all patches
-        uint8_t *kmem;
+	uint8_t *kmem;
 
 	// Disable write protection
 	uint64_t cr0 = readCr0();
@@ -70,7 +70,7 @@ int install_payload(struct thread *td, struct install_payload_args* args)
 	kmem[2] = 0x00;
 	kmem[3] = 0x00;
 
-        //flatz Patch sys_dynlib_dlsym: Allow from anywhere
+	// flatz Patch sys_dynlib_dlsym: Allow from anywhere
 	kmem = (uint8_t *)&kernel_base[sys_dynlib_dlsym_patch1];
 	kmem[0] = 0xEB;
 	kmem[1] = 0x4C;
@@ -105,13 +105,13 @@ int install_payload(struct thread *td, struct install_payload_args* args)
 	kmem = (uint8_t *)&kernel_base[enable_copyin_patch1];
 	kmem[0] = 0x90;
 	kmem[1] = 0x90;
-	
+
 	if (FW != 505)
 	{
-	kmem = (uint8_t *)&kernel_base[enable_copyin_patch2];
-	kmem[0] = 0x90;
-	kmem[1] = 0x90;
-	kmem[2] = 0x90;
+		kmem = (uint8_t *)&kernel_base[enable_copyin_patch2];
+		kmem[0] = 0x90;
+		kmem[1] = 0x90;
+		kmem[2] = 0x90;
 	}
 	// copyout
 	kmem = (uint8_t *)&kernel_base[enable_copyout_patch1];
@@ -120,25 +120,25 @@ int install_payload(struct thread *td, struct install_payload_args* args)
 
 	if (FW != 505)
 	{
-	kmem = (uint8_t *)&kernel_base[enable_copyout_patch2];
-	kmem[0] = 0x90;
-	kmem[1] = 0x90;
-	kmem[2] = 0x90;
+		kmem = (uint8_t *)&kernel_base[enable_copyout_patch2];
+		kmem[0] = 0x90;
+		kmem[1] = 0x90;
+		kmem[2] = 0x90;
 	}
-	
+
 	// Patch copyinstr
 	kmem = (uint8_t *)&kernel_base[enable_copyinstr_patch1];
 	kmem[0] = 0x90;
 	kmem[1] = 0x90;
-	
+
 	if (FW != 505)
 	{
-	kmem = (uint8_t *)&kernel_base[enable_copyinstr_patch2];
-	kmem[0] = 0x90;
-	kmem[1] = 0x90;
-	kmem[2] = 0x90;
+		kmem = (uint8_t *)&kernel_base[enable_copyinstr_patch2];
+		kmem[0] = 0x90;
+		kmem[1] = 0x90;
+		kmem[2] = 0x90;
 	}
-	
+
 	kmem = (uint8_t *)&kernel_base[enable_copyinstr_patch3];
 	kmem[0] = 0x90;
 	kmem[1] = 0x90;
@@ -148,7 +148,7 @@ int install_payload(struct thread *td, struct install_payload_args* args)
 	kmem[0] = 0xEB;
 
 	// ptrace patches
-	kmem = (uint8_t*)&kernel_base[enable_ptrace_patch1];
+	kmem = (uint8_t *)&kernel_base[enable_ptrace_patch1];
 	kmem[0] = 0x90;
 	kmem[1] = 0x90;
 	kmem[2] = 0x90;
@@ -165,15 +165,15 @@ int install_payload(struct thread *td, struct install_payload_args* args)
 	kmem[3] = 0x00;
 	kmem[4] = 0x00;
 
-   	// patch ASLR, thanks 2much4u
-   	kmem = (uint8_t *)&kernel_base[disable_aslr_patch];
-   	kmem[0] = 0x90;
-   	kmem[1] = 0x90;
+	// patch ASLR, thanks 2much4u
+	kmem = (uint8_t *)&kernel_base[disable_aslr_patch];
+	kmem[0] = 0x90;
+	kmem[1] = 0x90;
 
-    // Change directory depth limit from 9 to 64
+	// Change directory depth limit from 9 to 64
 	kmem = (uint8_t *)&kernel_base[depth_limit_patch];
 	kmem[0] = 0x40;
-	
+
 	// setlogin patch (for autolaunch check)
 	kmem = (uint8_t *)&kernel_base[enable_setlogin_patch];
 	kmem[0] = 0x48;
@@ -232,7 +232,6 @@ int install_payload(struct thread *td, struct install_payload_args* args)
 	kmem[4] = 0x90;
 	kmem[5] = 0x90;
 
-
 	// Enable mount for unprivileged user
 	kmem = (uint8_t *)&kernel_base[enable_mount_patch];
 	kmem[0] = 0x90;
@@ -253,7 +252,6 @@ int install_payload(struct thread *td, struct install_payload_args* args)
 	kmem[0] = 0x90;
 	kmem[1] = 0x90;
 
-
 	// Patch debug setting errors
 	kmem = (uint8_t *)&kernel_base[debug_menu_error_patch1];
 	kmem[0] = 0x00;
@@ -271,8 +269,8 @@ int install_payload(struct thread *td, struct install_payload_args* args)
 	memset(payload_buffer, 0, PAGE_SIZE);
 	memcpy(payload_buffer, payload_data, payload_size);
 
-	uint64_t sss = ((uint64_t)payload_buffer) & ~(uint64_t)(PAGE_SIZE-1);
-	uint64_t eee = ((uint64_t)payload_buffer + payload_size + PAGE_SIZE - 1) & ~(uint64_t)(PAGE_SIZE-1);
+	uint64_t sss = ((uint64_t)payload_buffer) & ~(uint64_t)(PAGE_SIZE - 1);
+	uint64_t eee = ((uint64_t)payload_buffer + payload_size + PAGE_SIZE - 1) & ~(uint64_t)(PAGE_SIZE - 1);
 	kernel_base[pmap_protect_p_addr] = 0xEB;
 	pmap_protect(kernel_pmap_store, sss, eee, 7);
 	kernel_base[pmap_protect_p_addr] = 0x75;
@@ -281,35 +279,75 @@ int install_payload(struct thread *td, struct install_payload_args* args)
 	writeCr0(cr0);
 
 	int (*payload_entrypoint)();
-	*((void**)&payload_entrypoint) = (void*)(&payload_buffer[payload_header->entrypoint_offset]);
+	*((void **)&payload_entrypoint) = (void *)(&payload_buffer[payload_header->entrypoint_offset]);
 
 	return payload_entrypoint();
 }
 
 static inline void patch_update(void)
 {
-  unlink(PS4_UPDATE_FULL_PATH);
-  rmdir(PS4_UPDATE_FULL_PATH);
-  if (mkdir(PS4_UPDATE_FULL_PATH, 0777) != 0) {
-    printf_debug("Failed to create /update/PS4UPDATE.PUP.");
-  }
-	
-  unlink(PS4_UPDATE_TEMP_PATH);
-  rmdir(PS4_UPDATE_TEMP_PATH);
-  if (mkdir(PS4_UPDATE_TEMP_PATH, 0777) != 0) {
-    printf_debug("Failed to create /update/PS4UPDATE.PUP.net.temp.");
-  }
+	unlink(PS4_UPDATE_FULL_PATH);
+	rmdir(PS4_UPDATE_FULL_PATH);
+	if (mkdir(PS4_UPDATE_FULL_PATH, 0777) != 0)
+	{
+		printf_debug("Failed to create /update/PS4UPDATE.PUP.");
+	}
+
+	unlink(PS4_UPDATE_TEMP_PATH);
+	rmdir(PS4_UPDATE_TEMP_PATH);
+	if (mkdir(PS4_UPDATE_TEMP_PATH, 0777) != 0)
+	{
+		printf_debug("Failed to create /update/PS4UPDATE.PUP.net.temp.");
+	}
+}
+
+// clang-format off
+static const
+#include "plugin_bootloader.prx.inc"
+static const
+#include "plugin_loader.prx.inc"
+static const
+#include "plugin_server.prx.inc"
+
+static void write_blob(const char* path, const void* blob, const size_t blobsz)
+{
+	int fd = open(path, O_CREAT | O_RDWR, 0777);
+	printf_debug("fd %s %d\n", path, fd);
+	if (fd > 0)
+	{
+		write(fd, blob,blobsz);
+		close(fd);
+	}
+}
+
+static void upload_prx_to_disk(void)
+{
+	write_blob("/user/data/plugin_bootloader.prx", plugin_bootloader_prx, sizeof(plugin_bootloader_prx));
+	write_blob("/user/data/plugin_loader.prx", plugin_loader_prx, sizeof(plugin_loader_prx));
+	write_blob("/user/data/plugin_server.prx", plugin_server_prx, sizeof(plugin_server_prx));
+}
+// clang-format on
+
+static void kill_party(void)
+{
+	static char proc[] = "ScePartyDaemon";
+	int party = findProcess(proc);
+	printf_debug("%s %d\n", proc, party);
+	if (party > 0)
+	{
+		kill(party, SIGKILL);
+	}
 }
 
 int _main(struct thread *td)
- {
+{
 
 	int result;
 
 	initKernel();
 	initLibc();
 
-    printf_debug("Starting...\n");
+	printf_debug("Starting...\n");
 
 	struct payload_info payload_info;
 	payload_info.buffer = (uint8_t *)kpayload;
@@ -324,9 +362,13 @@ int _main(struct thread *td)
 	patch_update();
 	initSysUtil();
 
-    char fw_version[6] = {0};
-    get_firmware_string(fw_version);
-	printf_notification("Welcome To PS4HEN v"VERSION"\nPS4 Firmware %s", fw_version);
+	jailbreak();
+	upload_prx_to_disk();
+	kill_party();
+
+	char fw_version[6] = {0};
+	get_firmware_string(fw_version);
+	printf_notification("Welcome To PS4HEN v" VERSION "\nPS4 Firmware %s", fw_version);
 
 	printf_debug("Done.\n");
 
