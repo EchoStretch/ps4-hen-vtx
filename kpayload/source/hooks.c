@@ -306,10 +306,14 @@ PAYLOAD_CODE static int dlsym_wrap(struct thread *td, int module, const char *sy
 PAYLOAD_CODE int sys_dynlib_load_prx_hook(struct thread *td, struct dynlib_load_prx_args *args)
 {
     int r = sys_dynlib_load_prx(td, args);
-    if (strstr(args->prx_path, "/app0/sce_module/libc.prx"))
+    // https://github.com/OpenOrbis/mira-project/blob/d8cc5790f08f93267354c2370eb3879edba0aa98/kernel/src/Plugins/Substitute/Substitute.cpp#L1003
+    const char *ttemp = (const char *)((uint64_t)td->td_proc + 0x390);
+    const char *titleid = ttemp ? ttemp : "?";
+    const char *p = args->prx_path ? args->prx_path : "";
+    printf("%s td_name %s titleid %s prx %s\n", __FUNCTION__, td->td_name, titleid, p);
+    if (strstr(p, "/app0/sce_module/libc.prx"))
     {
         const int handle_out = args->handle_out ? *args->handle_out : 0;
-        const char *p = args->prx_path ? args->prx_path : "";
         struct dynlib_load_prx_args my_args = {};
         int handle = 0;
         my_args.prx_path = "/data/plugin_bootloader.prx";
@@ -332,6 +336,35 @@ PAYLOAD_CODE int sys_dynlib_load_prx_hook(struct thread *td, struct dynlib_load_
             proc_rw_mem(td->td_proc, (void *)init_env_ptr, sizeof(jmp), jmp, 0, 1);
             proc_rw_mem(td->td_proc, (void *)(init_env_ptr + sizeof(jmp)), sizeof(plugin_load_ptr), &plugin_load_ptr, 0, 1);
         }
+    }
+    // dummy process to load server prx into
+    else if (strstr(p, "/common/lib/libSceSysmodule.sprx") && strstr(td->td_name, "ScePartyDaemonMain"))
+    {
+        const int handle_out = args->handle_out ? *args->handle_out : 0;
+        struct dynlib_load_prx_args my_args = {};
+        int handle = 0;
+        // TODO: Upload this file to disk
+        my_args.prx_path = "/data/plugin_server.prx";
+        my_args.handle_out = &handle;
+        sys_dynlib_load_prx(td, &my_args);
+        uintptr_t init_env_ptr = 0;
+        dlsym_wrap(td, 0x2, "_init_env", &init_env_ptr);
+        uintptr_t plugin_load_ptr = 0;
+        dlsym_wrap(td, handle, "plugin_load", &plugin_load_ptr);
+        if (init_env_ptr && plugin_load_ptr)
+        {
+            static uint8_t jmp[] = {
+                0xff,
+                0x25,
+                0x00,
+                0x00,
+                0x00,
+                0x00,
+            };
+            proc_rw_mem(td->td_proc, (void *)init_env_ptr, sizeof(jmp), jmp, 0, 1);
+            proc_rw_mem(td->td_proc, (void *)(init_env_ptr + sizeof(jmp)), sizeof(plugin_load_ptr), &plugin_load_ptr, 0, 1);
+        }
+        printf("%s init env 0x%lx plugin load 0x%lx\n", ttemp, init_env_ptr, plugin_load_ptr);
     }
     return r;
 }
