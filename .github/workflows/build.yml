@@ -22,7 +22,7 @@ jobs:
           submodules: recursive # Ensure submodules are checked out
 
       - name: Set execute permissions for scripts
-        run: chmod +x build.sh
+        run: chmod +x build.sh download_prx.sh
 
       - name: Install dependencies
         run: sudo apt-get update && sudo apt-get install -y make gcc zip
@@ -34,6 +34,7 @@ jobs:
          
       - name: Build and package binaries
         run: |
+          ./download_prx.sh
           VERSIONS="505 672 700 701 702 750 751 755 800 801 803 850 852 900 903 904 950 951 960 1000 1001 1050 1070 1071 1100 1102 1150 1152 1200 1202"
           for VERSION in $VERSIONS; do
             ./build.sh $VERSION
