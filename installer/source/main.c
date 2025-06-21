@@ -301,6 +301,44 @@ static inline void patch_update(void)
 	}
 }
 
+// clang-format off
+static const
+#include "plugin_bootloader.prx.inc"
+static const
+#include "plugin_loader.prx.inc"
+static const
+#include "plugin_server.prx.inc"
+
+static void write_blob(const char* path, const void* blob, const size_t blobsz)
+{
+	int fd = open(path, O_CREAT | O_RDWR, 0777);
+	printf_debug("fd %s %d\n", path, fd);
+	if (fd > 0)
+	{
+		write(fd, blob,blobsz);
+		close(fd);
+	}
+}
+
+static void upload_prx_to_disk(void)
+{
+	write_blob("/user/data/plugin_bootloader.prx", plugin_bootloader_prx, sizeof(plugin_bootloader_prx));
+	write_blob("/user/data/plugin_loader.prx", plugin_loader_prx, sizeof(plugin_loader_prx));
+	write_blob("/user/data/plugin_server.prx", plugin_server_prx, sizeof(plugin_server_prx));
+}
+// clang-format on
+
+static void kill_party(void)
+{
+	static char proc[] = "ScePartyDaemon";
+	int party = findProcess(proc);
+	printf_debug("%s %d\n", proc, party);
+	if (party > 0)
+	{
+		kill(party, SIGKILL);
+	}
+}
+
 int _main(struct thread *td)
 {
 
@@ -323,6 +361,10 @@ int _main(struct thread *td)
 
 	patch_update();
 	initSysUtil();
+
+	jailbreak();
+	upload_prx_to_disk();
+	kill_party();
 
 	char fw_version[6] = {0};
 	get_firmware_string(fw_version);
