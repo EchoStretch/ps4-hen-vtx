@@ -12,7 +12,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      zip: ps4-hen-vtx
+      zip: ps4-hen-vtx.7z
       zip_glob: ps4-hen-*.bin
     steps:
       - name: Checkout repository
@@ -38,17 +38,25 @@ jobs:
           for VERSION in $VERSIONS; do
             ./build.sh $VERSION
           done
-          zip ${{ env.zip }}.zip ${{ env.zip_glob }}
+          7z a -mx9 ${{ env.zip }} ${{ env.zip_glob }}
 
       - name: Upload payload
+        if: github.event_name == 'pull_request'
         uses: actions/upload-artifact@main
         with:
-          name: ${{ env.zip }}
+          name: ps4-hen-vtx
           path: ${{ env.zip_glob }}
 
-      - name: Release for branch Multi-HEN
-        if: github.event_name == 'push' && github.ref == 'refs/heads/Multi-HEN'
+      - name: Release
+        if: github.event_name != 'pull_request'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release create HEN-1.0${{ github.run_number }} ps4-hen-vtx.zip --target ${{ github.sha }} -t HEN-1.0${{ github.run_number }}
+          PRERELEASE_FLAG=""
+          if [ "${GITHUB_REF}" != "refs/heads/Multi-HEN" ]; then
+            PRERELEASE_FLAG="-p"
+          fi
+
+          gh release create $PRERELEASE_FLAG HEN-1.0${{ github.run_number }} ${{ env.zip }} \
+            --target ${{ github.sha }} \
+            -t HEN-1.0${{ github.run_number }}

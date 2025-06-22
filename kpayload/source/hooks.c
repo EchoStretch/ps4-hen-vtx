@@ -169,6 +169,12 @@ PAYLOAD_CODE void install_syscall(uint32_t n, void *func)
     p->sy_thrcnt = 1;
 }
 
+PAYLOAD_CODE void *get_syscall(uint64_t n)
+{
+    struct sysent *p = &SYSENT[n];
+    return p->sy_call;
+}
+
 int sys_proc_info_handle(struct proc *p, struct sys_proc_info_args *args)
 {
     args->pid = p->pid;
@@ -307,8 +313,7 @@ PAYLOAD_CODE int sys_dynlib_load_prx_hook(struct thread *td, struct dynlib_load_
 {
     int r = sys_dynlib_load_prx(td, args);
     // https://github.com/OpenOrbis/mira-project/blob/d8cc5790f08f93267354c2370eb3879edba0aa98/kernel/src/Plugins/Substitute/Substitute.cpp#L1003
-    const char *ttemp = (const char *)((uint64_t)td->td_proc + 0x390);
-    const char *titleid = ttemp ? ttemp : "?";
+    const char *titleid = td->td_proc->titleid;
     const char *p = args->prx_path ? args->prx_path : "";
     printf("%s td_name %s titleid %s prx %s\n", __FUNCTION__, td->td_name, titleid, p);
     if (strstr(p, "/app0/sce_module/libc.prx"))
@@ -340,7 +345,6 @@ PAYLOAD_CODE int sys_dynlib_load_prx_hook(struct thread *td, struct dynlib_load_
     // dummy process to load server prx into
     else if (strstr(p, "/common/lib/libSceSysmodule.sprx") && strstr(td->td_name, "ScePartyDaemonMain"))
     {
-        const int handle_out = args->handle_out ? *args->handle_out : 0;
         struct dynlib_load_prx_args my_args = {};
         int handle = 0;
         // TODO: Upload this file to disk
@@ -364,7 +368,7 @@ PAYLOAD_CODE int sys_dynlib_load_prx_hook(struct thread *td, struct dynlib_load_
             proc_rw_mem(td->td_proc, (void *)init_env_ptr, sizeof(jmp), jmp, 0, 1);
             proc_rw_mem(td->td_proc, (void *)(init_env_ptr + sizeof(jmp)), sizeof(plugin_load_ptr), &plugin_load_ptr, 0, 1);
         }
-        printf("%s init env 0x%lx plugin load 0x%lx\n", ttemp, init_env_ptr, plugin_load_ptr);
+        printf("%s init env 0x%lx plugin load 0x%lx\n", titleid, init_env_ptr, plugin_load_ptr);
     }
     return r;
 }
@@ -381,8 +385,6 @@ PAYLOAD_CODE void install_syscall_hooks()
     install_syscall(107, sys_proc_list);
     install_syscall(108, sys_proc_rw);
     install_syscall(109, sys_proc_cmd);
-    printf("sys_dynlib_load_prx %p\n", sys_dynlib_load_prx);
-    printf("sys_dynlib_dlsym %p\n", sys_dynlib_dlsym);
     if (sys_dynlib_load_prx && sys_dynlib_dlsym)
     {
         install_syscall(594, sys_dynlib_load_prx_hook);
