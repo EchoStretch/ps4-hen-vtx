@@ -1,7 +1,9 @@
 #!/bin/bash
 
 c=$PWD
-cd installer/build
+b=installer/build
+mkdir -p $b
+cd $b
 f=plugins.zip
 curl -fLJO https://github.com/illusion0001/ps4-hen-plugins/releases/latest/download/$f
 unzip $f
