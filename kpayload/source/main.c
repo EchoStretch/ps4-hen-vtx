@@ -284,7 +284,7 @@ static PAYLOAD_CODE uint64_t get_kernel_size(uint64_t kernel_base)
 	return max - 0xFFFFFFFF82200000;
 }
 
-PAYLOAD_CODE static void resolve_patterns()
+PAYLOAD_CODE static void resolve_patterns(void)
 {
 	uint64_t flags, cr0;
 	cr0 = readCr0();
