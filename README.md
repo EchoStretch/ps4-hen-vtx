@@ -4,10 +4,11 @@
 - Current Supports 5.05 - 12.02
 - Homebrew Enabler
 - [Plugins System](https://github.com/illusion0001/ps4-hen-plugins)
-  - Load PRX into `ScePartyDaemon` (Starts klog server on port 3232, based on [klogsrv](https://github.com/ps5-payload-dev/klogsrv))
-    - [Source](https://github.com/illusion0001/ps4-hen-plugins/tree/main/plugin_server)
+  - Load PRX into `ScePartyDaemon`
+    - (Starts klog server on port 3232, based on [klogsrv](https://github.com/ps5-payload-dev/klogsrv))
+    - (Starts FTP server on port 2121, based on [ftpsrv](https://github.com/ps5-payload-dev/ftpsrv))
+      - **Note: No SELF decryption yet.**
   - Load PRX into retail apps (on startup in CRT `_init_env`) (Shows only notification for now)
-    - [Source](https://github.com/illusion0001/ps4-hen-plugins/tree/main/plugin_loader)
 - Jailbreak
 - Sandbox Escape
 - Debug Settings
