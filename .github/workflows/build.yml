@@ -12,7 +12,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      zip: ps4-hen-vtx
+      zip: ps4-hen-vtx.7z
       zip_glob: ps4-hen-*.bin
     steps:
       - name: Checkout repository
@@ -38,7 +38,7 @@ jobs:
           for VERSION in $VERSIONS; do
             ./build.sh $VERSION
           done
-          zip ${{ env.zip }}.zip ${{ env.zip_glob }}
+          7z a -mx9 ${{ env.zip }} ${{ env.zip_glob }}
 
       - name: Upload payload
         if: github.event_name == 'pull_request'
@@ -57,6 +57,6 @@ jobs:
             PRERELEASE_FLAG="-p"
           fi
 
-          gh release create $PRERELEASE_FLAG HEN-1.0${{ github.run_number }} ps4-hen-vtx.zip \
+          gh release create $PRERELEASE_FLAG HEN-1.0${{ github.run_number }} ${{ env.zip }} \
             --target ${{ github.sha }} \
             -t HEN-1.0${{ github.run_number }}
