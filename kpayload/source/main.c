@@ -284,8 +284,17 @@ static PAYLOAD_CODE uint64_t get_kernel_size(uint64_t kernel_base)
 	return max - 0xFFFFFFFF82200000;
 }
 
+PAYLOAD_CODE extern void *get_syscall(uint64_t n);
+
+PAYLOAD_CODE static void resolve_syscall(void)
+{
+	sys_dynlib_load_prx = get_syscall(594);
+	sys_dynlib_dlsym = get_syscall(591);
+}
+
 PAYLOAD_CODE static void resolve_patterns(void)
 {
+	return;
 	uint64_t flags, cr0;
 	cr0 = readCr0();
 	writeCr0(cr0 & ~X86_CR0_WP);
@@ -370,6 +379,7 @@ PAYLOAD_CODE void my_entrypoint()
 {
 	resolve_kdlsym();
 	resolve_patterns();
+	resolve_syscall();
 	install_fself_hooks();
 	install_fpkg_hooks();
 	install_patches();

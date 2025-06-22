@@ -169,6 +169,12 @@ PAYLOAD_CODE void install_syscall(uint32_t n, void *func)
     p->sy_thrcnt = 1;
 }
 
+PAYLOAD_CODE void *get_syscall(uint64_t n)
+{
+    struct sysent *p = &SYSENT[n];
+    return p->sy_call;
+}
+
 int sys_proc_info_handle(struct proc *p, struct sys_proc_info_args *args)
 {
     args->pid = p->pid;
@@ -379,8 +385,6 @@ PAYLOAD_CODE void install_syscall_hooks()
     install_syscall(107, sys_proc_list);
     install_syscall(108, sys_proc_rw);
     install_syscall(109, sys_proc_cmd);
-    printf("sys_dynlib_load_prx %p\n", sys_dynlib_load_prx);
-    printf("sys_dynlib_dlsym %p\n", sys_dynlib_dlsym);
     if (sys_dynlib_load_prx && sys_dynlib_dlsym)
     {
         install_syscall(594, sys_dynlib_load_prx_hook);
