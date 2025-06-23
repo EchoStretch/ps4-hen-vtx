@@ -8,7 +8,7 @@
     - (Starts klog server on port 3232, based on [klogsrv](https://github.com/ps5-payload-dev/klogsrv))
     - (Starts FTP server on port 2121, based on [ftpsrv](https://github.com/ps5-payload-dev/ftpsrv))
       - **Note: No SELF decryption yet.**
-  - Load PRX into retail apps (on startup in CRT `_init_env`) (Shows only notification for now)
+  - Load PRX into retail apps (on startup in CRT `_init_env`) (Prints to TTY for now)
 - Jailbreak
 - Sandbox Escape
 - Debug Settings
