@@ -2,7 +2,7 @@
 #define __DEFINES_H__
 #pragma once
 
-#define VERSION "2.1.5"
+#define VERSION "2.1.6"
 
 struct payload_info {
 	uint8_t* buffer;
