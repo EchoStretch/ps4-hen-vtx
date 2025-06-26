@@ -1,6 +1,6 @@
 
 # Project Moved Over To Scene-Collective
-- ([Click Here To Redirect] (https://github.com/Scene-Collective/ps4-hen))
+- ([Click Here To Redirect](https://github.com/Scene-Collective/ps4-hen))
 
 
   
